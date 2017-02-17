@@ -18,6 +18,7 @@ public class Main extends Application {
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
+		//This is the change made by Kade Stephens
 	}
 	
 	public static void main(String[] args) {
