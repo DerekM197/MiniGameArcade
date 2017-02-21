@@ -8,7 +8,7 @@ public class NotMine implements Subscribable<Integer> {
 	
 	@Override
 	public void update(Integer value) {
-		
+		zoneValue += 1;
 	}
 
 

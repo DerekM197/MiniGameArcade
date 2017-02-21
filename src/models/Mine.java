@@ -21,7 +21,9 @@ public class Mine extends Cell implements Publishable<Integer>{
 
 	@Override
 	public void notifySubscribers() {
-		
+		for(Subscribable<Integer> sub : subs){
+			sub.update(1);
+		}
 	}
 
 }
