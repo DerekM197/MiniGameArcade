@@ -5,16 +5,16 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.MinesweeperController">
    <top>
       <HBox alignment="TOP_CENTER" spacing="10.0" BorderPane.alignment="CENTER">
          <children>
-            <Button mnemonicParsing="false" text="Back" HBox.hgrow="SOMETIMES">
+            <Button fx:id="backButton" mnemonicParsing="false" text="Back" HBox.hgrow="SOMETIMES">
                <HBox.margin>
                   <Insets top="10.0" />
                </HBox.margin>
             </Button>
-            <Button mnemonicParsing="false" text="New Game">
+            <Button fx:id="newGameButton" mnemonicParsing="false" text="New Game">
                <HBox.margin>
                   <Insets top="10.0" />
                </HBox.margin>
