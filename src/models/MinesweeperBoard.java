@@ -1,13 +1,15 @@
 package models;
 
+
+
 public class MinesweeperBoard {
 	private int rowSize;
 	private int colSize;
-	Cell[][] board = new Cell[colSize][rowSize];
+	Cell[][] board = new Cell[rowSize][colSize];
 	
-	public MinesweeperBoard(int colSize, int rowSize){
-		setColSize(colSize);
+	public MinesweeperBoard(int rowSize, int colSize){
 		setRowSize(rowSize);
+		setColSize(colSize);
 	}
 	
 	public int getRowSize() {

@@ -12,9 +12,12 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
+import models.Cell;
+import models.MinesweeperBoard;
 
 
 public class MinesweeperMain extends Application {
+	private MinesweeperBoard board = new MinesweeperBoard(16, 16);
 	@Override
 	public void start(Stage primaryStage) {
 		try {
@@ -26,10 +29,10 @@ public class MinesweeperMain extends Application {
 			for(int i = 0; i < 16; i++){
 				for(int j = 0; j < 16; j++){
 					Image tile = new Image(new FileInputStream("C:\\opp\\MiniGameArcade\\images\\Tile.png"));
-					Label cell = new Label();
-					cell.setGraphic(new ImageView(tile));
-					cell.setId("cell" + i+1);
-					grid.add(cell, i+1, j+1);
+					Label state = new Label();
+					state.setGraphic(new ImageView(tile));
+					grid.add(state, i, j);
+					makeAndAddCell(i, j);
 				}	
 			}
 			Scene scene = new Scene(mineField,400,400);
@@ -39,6 +42,19 @@ public class MinesweeperMain extends Application {
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public void makeAndAddCell(int i, int j){
+		Cell cell = new Cell();
+		board.getBoard()[i][j] = cell;
+		
+	}
+	
+	public GridPane makeGrid(BorderPane mineField){
+		GridPane grid = new GridPane();
+		grid.gridLinesVisibleProperty().set(true);
+		grid.alignmentProperty().set(Pos.CENTER);
+		return grid;
 	}
 	
 	public static void main(String[] args) {
