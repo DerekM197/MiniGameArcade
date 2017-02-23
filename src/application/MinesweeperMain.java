@@ -1,10 +1,14 @@
 package application;
 	
+import java.io.FileInputStream;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
@@ -21,9 +25,10 @@ public class MinesweeperMain extends Application {
 			mineField.setCenter(grid);
 			for(int i = 0; i < 16; i++){
 				for(int j = 0; j < 16; j++){
+					Image tile = new Image(new FileInputStream("C:\\opp\\MiniGameArcade\\images\\Tile.png"));
 					Label cell = new Label();
+					cell.setGraphic(new ImageView(tile));
 					cell.setId("cell" + i+1);
-					cell.setText("hi");
 					grid.add(cell, i+1, j+1);
 				}	
 			}
