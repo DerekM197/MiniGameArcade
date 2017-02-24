@@ -39,66 +39,97 @@ public class SudokuMaster {
 	
 	private TextField[][] getRows()
 	{
-		TextField[][] test = new TextField[9][9];
+		TextField[][] rows = new TextField[9][9];
 		GridPane[] boxe =  MainBox.getChildren().toArray(new GridPane[0]);
-		int count = 0;
 		for(int i =0,r=0;i<9;++i,r+=3)
 		{
 			for(int j = 0,k=0;j<9;++k)
 			{
-				if(i!=0&&i/3==0&&k==0)
-				{
-					k+=3;
-				}else if(i!=0&&i/6==0&&k==0)
+				if(i!=0&&i>5&&k==0)
 				{
 					k+=6;
+				}else if(i!=0&&i>2&&k==0)
+				{
+					k+=3;
 				}
 				TextField[] hi = boxe[k].getChildren().toArray(new TextField[0]);
 				for(int p = 0;p<3;++p,++j)
 				{
-					System.out.println("I: "+i+" R: "+r+" J: "+j+" K: "+k+" P: "+p+" C: "+count++);
-					test[i][j] = hi[p+r];
+					//System.out.println("I: "+i+" R: "+r+" J: "+j+" K: "+k+" P: "+p+" C: "+count++);
+					rows[i][j] = hi[p+r];
 				
 				}
-				System.out.println("--");
-				
+				//System.out.println("--");
 			}
-		
 			if(r==6)
 			{
 				
 				r=-3;
 			}
 		}
-		return test;
+		return rows;
 	}
 	
-	public boolean checkFullBoard()
+	private TextField[][] getColums() {
+		TextField[][] colums = new TextField[9][9];
+		GridPane[] boxe =  MainBox.getChildren().toArray(new GridPane[0]);
+		for(int i =0,r=0;i<9;++i,r+=3)
+		{
+			for(int j = 0,k=0;j<9;++k)
+			{
+				if(i!=0&&i>5&&k==0)
+				{
+					k+=6;
+				}else if(i!=0&&i>2&&k==0)
+				{
+					k+=3;
+				}
+				TextField[] hi = boxe[k].getChildren().toArray(new TextField[0]);
+				for(int p = 0;p<3;++p,++j)
+				{
+					//System.out.println("I: "+i+" R: "+r+" J: "+j+" K: "+k+" P: "+p+" C: "+count++);
+					colums[i][j] = hi[p+r];
+				
+				}
+				//System.out.println("--");
+			}
+			if(r==6)
+			{
+				
+				r=-3;
+			}
+		}
+		return colums;
+	}
+	
+	private void printArr()
 	{
-		
-//		System.out.println(getRows());
-		TextField[][] rows = getRows();
+		TextField[][] colums = getColums();
 		for(int i = 0;i<9;++i)
 		{
 			for(int j=0;j<9;++j)
 			{
-				System.out.print(rows[i][j].getText()+"|");
+				System.out.print(colums[i][j].getText()+"|");
 			}
 			System.out.println();
 		}
-		boolean valid = true; 
+	}
+	
+	
+	public boolean checkFullBoard()
+	{
+		printArr();
 		/*
-		
+		boolean valid = true; 
+		TextField[][] rows = getRows();
 		for(int i = 0;i<9;++i)
 		{//Does all rows
 			if(!checkArrSolution(rows[i]))
 			{
 				valid = false;
 				i = 10;
-			}
-			
+			}		
 		}
-		
 		
 		for(int i = 0;i<9;++i)
 		{//Does all boxes
@@ -106,8 +137,10 @@ public class SudokuMaster {
 				valid = false;
 				i = 10;
 			}
-		}	*/
+		}	
 		return valid;
+		*/
+		return null;
 	}
 	
 	
