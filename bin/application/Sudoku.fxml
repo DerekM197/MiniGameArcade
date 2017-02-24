@@ -53,15 +53,15 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <TextField fx:id="BoxTM0o0" />
-            <TextField fx:id="BoxTM1o0" GridPane.columnIndex="1" />
-            <TextField fx:id="BoxTM2o0" GridPane.columnIndex="2" />
-            <TextField fx:id="BoxTM0o1" GridPane.rowIndex="1" />
-            <TextField fx:id="BoxTM1o1" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <TextField fx:id="BoxTM02o1" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-            <TextField fx:id="BoxTM0o2" GridPane.rowIndex="2" />
-            <TextField fx:id="BoxTM1o2" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <TextField fx:id="BoxTM2o2" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+            <TextField fx:id="BoxTM0o0" onKeyReleased="#testing" />
+            <TextField fx:id="BoxTM1o0" onKeyReleased="#testing" GridPane.columnIndex="1" />
+            <TextField fx:id="BoxTM2o0" onKeyReleased="#testing" GridPane.columnIndex="2" />
+            <TextField fx:id="BoxTM0o1" onKeyReleased="#testing" GridPane.rowIndex="1" />
+            <TextField fx:id="BoxTM1o1" onKeyReleased="#testing" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="BoxTM02o1" onKeyReleased="#testing" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <TextField fx:id="BoxTM0o2" onKeyReleased="#testing" GridPane.rowIndex="2" />
+            <TextField fx:id="BoxTM1o2" onKeyReleased="#testing" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="BoxTM2o2" onKeyReleased="#testing" GridPane.columnIndex="2" GridPane.rowIndex="2" />
          </children>
       </GridPane>
       <GridPane fx:id="BoxTR" GridPane.columnIndex="2">
@@ -76,15 +76,15 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <TextField fx:id="BoxTLTextTL1" />
-            <TextField fx:id="TextTM1" GridPane.columnIndex="1" />
-            <TextField fx:id="TextTR1" GridPane.columnIndex="2" />
-            <TextField fx:id="TextML1" GridPane.rowIndex="1" />
-            <TextField fx:id="TextMM1" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <TextField fx:id="TextMR1" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-            <TextField fx:id="TextBL1" GridPane.rowIndex="2" />
-            <TextField fx:id="TextBM1" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <TextField fx:id="TextBR1" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+            <TextField fx:id="BoxTLTextTL1" onKeyReleased="#testing" />
+            <TextField fx:id="TextTM1" onKeyReleased="#testing" GridPane.columnIndex="1" />
+            <TextField fx:id="TextTR1" onKeyReleased="#testing" GridPane.columnIndex="2" />
+            <TextField fx:id="TextML1" onKeyReleased="#testing" GridPane.rowIndex="1" />
+            <TextField fx:id="TextMM1" onKeyReleased="#testing" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="TextMR1" onKeyReleased="#testing" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <TextField fx:id="TextBL1" onKeyReleased="#testing" GridPane.rowIndex="2" />
+            <TextField fx:id="TextBM1" onKeyReleased="#testing" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="TextBR1" onKeyReleased="#testing" GridPane.columnIndex="2" GridPane.rowIndex="2" />
          </children>
       </GridPane>
       <GridPane fx:id="BoxMR" GridPane.rowIndex="1">
@@ -99,15 +99,15 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <TextField fx:id="BoxTLTextTL2" />
-            <TextField fx:id="TextTM2" GridPane.columnIndex="1" />
-            <TextField fx:id="TextTR2" GridPane.columnIndex="2" />
-            <TextField fx:id="TextML2" GridPane.rowIndex="1" />
-            <TextField fx:id="TextMM2" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <TextField fx:id="TextMR2" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-            <TextField fx:id="TextBL2" GridPane.rowIndex="2" />
-            <TextField fx:id="TextBM2" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <TextField fx:id="TextBR2" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+            <TextField fx:id="BoxTLTextTL2" onKeyReleased="#testing" />
+            <TextField fx:id="TextTM2" onKeyReleased="#testing" GridPane.columnIndex="1" />
+            <TextField fx:id="TextTR2" onKeyReleased="#testing" GridPane.columnIndex="2" />
+            <TextField fx:id="TextML2" onKeyReleased="#testing" GridPane.rowIndex="1" />
+            <TextField fx:id="TextMM2" onKeyReleased="#testing" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="TextMR2" onKeyReleased="#testing" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <TextField fx:id="TextBL2" onKeyReleased="#testing" GridPane.rowIndex="2" />
+            <TextField fx:id="TextBM2" onKeyReleased="#testing" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="TextBR2" onKeyReleased="#testing" GridPane.columnIndex="2" GridPane.rowIndex="2" />
          </children>
       </GridPane>
       <GridPane fx:id="BoxMM" GridPane.columnIndex="1" GridPane.rowIndex="1">
@@ -122,15 +122,15 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <TextField fx:id="BoxTLTextTL3" />
-            <TextField fx:id="TextTM3" GridPane.columnIndex="1" />
-            <TextField fx:id="TextTR3" GridPane.columnIndex="2" />
-            <TextField fx:id="TextML3" GridPane.rowIndex="1" />
-            <TextField fx:id="TextMM3" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <TextField fx:id="TextMR3" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-            <TextField fx:id="TextBL3" GridPane.rowIndex="2" />
-            <TextField fx:id="TextBM3" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <TextField fx:id="TextBR3" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+            <TextField fx:id="BoxTLTextTL3" onKeyReleased="#testing" />
+            <TextField fx:id="TextTM3" onKeyReleased="#testing" GridPane.columnIndex="1" />
+            <TextField fx:id="TextTR3" onKeyReleased="#testing" GridPane.columnIndex="2" />
+            <TextField fx:id="TextML3" onKeyReleased="#testing" GridPane.rowIndex="1" />
+            <TextField fx:id="TextMM3" onKeyReleased="#testing" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="TextMR3" onKeyReleased="#testing" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <TextField fx:id="TextBL3" onKeyReleased="#testing" GridPane.rowIndex="2" />
+            <TextField fx:id="TextBM3" onKeyReleased="#testing" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="TextBR3" onKeyReleased="#testing" GridPane.columnIndex="2" GridPane.rowIndex="2" />
          </children>
       </GridPane>
       <GridPane fx:id="BoxMR" GridPane.columnIndex="2" GridPane.rowIndex="1">
@@ -145,15 +145,15 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <TextField fx:id="BoxTLTextTL4" />
-            <TextField fx:id="TextTM4" GridPane.columnIndex="1" />
-            <TextField fx:id="TextTR4" GridPane.columnIndex="2" />
-            <TextField fx:id="TextML4" GridPane.rowIndex="1" />
-            <TextField fx:id="TextMM4" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <TextField fx:id="TextMR4" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-            <TextField fx:id="TextBL4" GridPane.rowIndex="2" />
-            <TextField fx:id="TextBM4" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <TextField fx:id="TextBR4" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+            <TextField fx:id="BoxTLTextTL4" onKeyReleased="#testing" />
+            <TextField fx:id="TextTM4" onKeyReleased="#testing" GridPane.columnIndex="1" />
+            <TextField fx:id="TextTR4" onKeyReleased="#testing" GridPane.columnIndex="2" />
+            <TextField fx:id="TextML4" onKeyReleased="#testing" GridPane.rowIndex="1" />
+            <TextField fx:id="TextMM4" onKeyReleased="#testing" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="TextMR4" onKeyReleased="#testing" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <TextField fx:id="TextBL4" onKeyReleased="#testing" GridPane.rowIndex="2" />
+            <TextField fx:id="TextBM4" onKeyReleased="#testing" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="TextBR4" onKeyReleased="#testing" GridPane.columnIndex="2" GridPane.rowIndex="2" />
          </children>
       </GridPane>
       <GridPane fx:id="BoxBL" GridPane.rowIndex="2">
@@ -168,15 +168,15 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <TextField fx:id="BoxTLTextTL5" />
-            <TextField fx:id="TextTM5" GridPane.columnIndex="1" />
-            <TextField fx:id="TextTR5" GridPane.columnIndex="2" />
-            <TextField fx:id="TextML5" GridPane.rowIndex="1" />
-            <TextField fx:id="TextMM5" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <TextField fx:id="TextMR5" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-            <TextField fx:id="TextBL5" GridPane.rowIndex="2" />
-            <TextField fx:id="TextBM5" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <TextField fx:id="TextBR5" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+            <TextField fx:id="BoxTLTextTL5" onKeyReleased="#testing" />
+            <TextField fx:id="TextTM5" onKeyReleased="#testing" GridPane.columnIndex="1" />
+            <TextField fx:id="TextTR5" onKeyReleased="#testing" GridPane.columnIndex="2" />
+            <TextField fx:id="TextML5" onKeyReleased="#testing" GridPane.rowIndex="1" />
+            <TextField fx:id="TextMM5" onKeyReleased="#testing" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="TextMR5" onKeyReleased="#testing" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <TextField fx:id="TextBL5" onKeyReleased="#testing" GridPane.rowIndex="2" />
+            <TextField fx:id="TextBM5" onKeyReleased="#testing" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="TextBR5" onKeyReleased="#testing" GridPane.columnIndex="2" GridPane.rowIndex="2" />
          </children>
       </GridPane>
       <GridPane fx:id="BoxBM" GridPane.columnIndex="1" GridPane.rowIndex="2">
@@ -191,15 +191,15 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <TextField fx:id="BoxTLTextTL6" />
-            <TextField fx:id="TextTM6" GridPane.columnIndex="1" />
-            <TextField fx:id="TextTR6" GridPane.columnIndex="2" />
-            <TextField fx:id="TextML6" GridPane.rowIndex="1" />
-            <TextField fx:id="TextMM6" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <TextField fx:id="TextMR6" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-            <TextField fx:id="TextBL6" GridPane.rowIndex="2" />
-            <TextField fx:id="TextBM6" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <TextField fx:id="TextBR6" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+            <TextField fx:id="BoxTLTextTL6" onKeyReleased="#testing" />
+            <TextField fx:id="TextTM6" onKeyReleased="#testing" GridPane.columnIndex="1" />
+            <TextField fx:id="TextTR6" onKeyReleased="#testing" GridPane.columnIndex="2" />
+            <TextField fx:id="TextML6" onKeyReleased="#testing" GridPane.rowIndex="1" />
+            <TextField fx:id="TextMM6" onKeyReleased="#testing" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="TextMR6" onKeyReleased="#testing" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <TextField fx:id="TextBL6" onKeyReleased="#testing" GridPane.rowIndex="2" />
+            <TextField fx:id="TextBM6" onKeyReleased="#testing" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="TextBR6" onKeyReleased="#testing" GridPane.columnIndex="2" GridPane.rowIndex="2" />
          </children>
       </GridPane>
       <GridPane fx:id="BoxBR" GridPane.columnIndex="2" GridPane.rowIndex="2">
@@ -214,15 +214,15 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <TextField fx:id="BoxTLTextTL7" />
-            <TextField fx:id="TextTM7" GridPane.columnIndex="1" />
-            <TextField fx:id="TextTR7" GridPane.columnIndex="2" />
-            <TextField fx:id="TextML7" GridPane.rowIndex="1" />
-            <TextField fx:id="TextMM7" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <TextField fx:id="TextMR7" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-            <TextField fx:id="TextBL7" GridPane.rowIndex="2" />
-            <TextField fx:id="TextBM7" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <TextField fx:id="TextBR7" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+            <TextField fx:id="BoxTLTextTL7" onKeyReleased="#testing" />
+            <TextField fx:id="TextTM7" onKeyReleased="#testing" GridPane.columnIndex="1" />
+            <TextField fx:id="TextTR7" onKeyReleased="#testing" GridPane.columnIndex="2" />
+            <TextField fx:id="TextML7" onKeyReleased="#testing" GridPane.rowIndex="1" />
+            <TextField fx:id="TextMM7" onKeyReleased="#testing" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="TextMR7" onKeyReleased="#testing" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <TextField fx:id="TextBL7" onKeyReleased="#testing" GridPane.rowIndex="2" />
+            <TextField fx:id="TextBM7" onKeyReleased="#testing" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="TextBR7" onKeyReleased="#testing" GridPane.columnIndex="2" GridPane.rowIndex="2" />
          </children>
       </GridPane>
       <GridPane GridPane.columnIndex="3" GridPane.rowIndex="2">
@@ -234,9 +234,11 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
             <Button fx:id="check" mnemonicParsing="false" onAction="#checkFullBoard" text="Button" />
+            <Button fx:id="NewGame" mnemonicParsing="false" onAction="#generateNewBoard" text="Button" GridPane.rowIndex="1" />
          </children>
       </GridPane>
    </children>
