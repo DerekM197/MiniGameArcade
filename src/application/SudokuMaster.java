@@ -25,6 +25,8 @@ public class SudokuMaster {
 		TextBoard = getBoard();
 	}
 	
+	//public void 
+	
 	public void testing()
 	{
 		String[] nums = {"1","2","3","4","5","6","7","8","9"};
@@ -158,7 +160,7 @@ public class SudokuMaster {
 	public void checkBoard()
 	{
 		
-		TextMM72.setText(""+checkFullBoard());
+		TextMM72.setText(checkFullBoard()? "You Win!!" : "Not complete");
 	}
 		
 	private boolean checkFullBoard()

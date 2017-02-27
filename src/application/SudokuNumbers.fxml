@@ -238,7 +238,7 @@
          <children>
             <Button fx:id="check" mnemonicParsing="false" onAction="#checkBoard" prefHeight="25.0" prefWidth="136.0" text="Check for completion" GridPane.rowIndex="3" />
             <Button fx:id="NewGame" mnemonicParsing="false" onAction="#generateNewBoard" prefHeight="25.0" prefWidth="134.0" text="Start new game" GridPane.rowIndex="2" />
-            <TextField fx:id="TextMM72" editable="false" onKeyReleased="#testing" promptText="false" text="false" GridPane.rowIndex="1" />
+            <TextField fx:id="TextMM72" editable="false" onKeyReleased="#testing" promptText="false" text="Not complete" GridPane.rowIndex="1" />
             <TextField fx:id="TextMM721" editable="false" onKeyReleased="#testing" promptText="Completion" text="Completion" />
          </children>
       </GridPane>
