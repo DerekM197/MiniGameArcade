@@ -4,28 +4,40 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.EventListener;
-
-import interfaces.Publishable;
-import interfaces.Subscribable;
-import javafx.beans.property.SimpleBooleanProperty;
-import javafx.beans.property.SimpleIntegerProperty;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
-public class Cell implements Subscribable<Integer>, Publishable<Integer>, EventListener {
-	ArrayList<Subscribable<Integer>> subs = new ArrayList<>();
+public class Cell implements EventListener {
 
+	private ArrayList<Cell> neighbors = new ArrayList<>();
 	private boolean revealed;
 	private boolean isMine;
 	private int xCoord;
 	private int yCoord;
 	private boolean marked;
 	private int zoneValue;
+	private Label state;
 
 	public Cell() {
 		setRevealed(false);
+	}
+
+	public Label getState() {
+		return state;
+	}
+
+	public void setState(Label state) {
+		this.state = state;
+	}
+
+	public ArrayList<Cell> getNeighbors() {
+		return neighbors;
+	}
+
+	public void setNeighbors(Cell neighbor) {
+		this.neighbors.add(neighbor);
 	}
 
 	public int getZoneValue() {
@@ -33,11 +45,7 @@ public class Cell implements Subscribable<Integer>, Publishable<Integer>, EventL
 	}
 
 	public void setZoneValue(int zoneValue) {
-		this.zoneValue = zoneValue;
-	}
-
-	public ArrayList<Subscribable<Integer>> getSubs() {
-		return subs;
+		this.zoneValue += zoneValue;
 	}
 
 	public boolean isRevealed() {
@@ -80,45 +88,79 @@ public class Cell implements Subscribable<Integer>, Publishable<Integer>, EventL
 		this.marked = marked;
 	}
 
-	@Override
-	public void update(Integer value) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void add(Subscribable<Integer> sub) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void notifySubscribers() {
-
-	}
-
-	public void leftMouseClicked(MouseEvent t, Label state) {
+	public void open(Label state) {
 		if (!revealed && !isMine && !marked) {
 			setRevealed(true);
-			try {
-				state.setGraphic(
-						new ImageView(new Image(new FileInputStream("C:\\opp\\MiniGameArcade\\images\\exposed.png"))));
-			} catch (FileNotFoundException e) {
-				e.printStackTrace();
+			if (getZoneValue() == 1) {
+				this.state.setGraphic(new ImageView(new Image("file:images/number1.png")));
+			} else if (getZoneValue() == 2) {
+				this.state.setGraphic(new ImageView(new Image("file:images/number2.png")));
+			} else if (getZoneValue() == 3) {
+				this.state.setGraphic(new ImageView(new Image("file:images/number3.png")));
+			} else if (getZoneValue() == 4) {
+				this.state.setGraphic(new ImageView(new Image("file:images/number4.png")));
+			} else if (getZoneValue() == 5) {
+				this.state.setGraphic(new ImageView(new Image("file:images/number5.png")));
+			} else if (getZoneValue() == 6) {
+				this.state.setGraphic(new ImageView(new Image("file:images/number6.png")));
+			} else if (getZoneValue() == 7) {
+				this.state.setGraphic(new ImageView(new Image("file:images/number7.png")));
+			} else if (getZoneValue() == 8) {
+				this.state.setGraphic(new ImageView(new Image("file:images/number8.png")));
+			} else {
+				this.state.setGraphic(new ImageView(new Image("file:images/exposed.png")));
+				revealNeighbors();
 			}
-		} else if (!revealed && isMine && !marked) {
-			setRevealed(true);
-			try {
-				state.setGraphic(
-						new ImageView(new Image(new FileInputStream("C:\\opp\\MiniGameArcade\\images\\hitmine.png"))));
-			} catch (FileNotFoundException e) {
-				e.printStackTrace();
+
+		}
+	}
+
+	public void revealNeighbors() {
+
+		for (Cell cell : neighbors) {
+			if (!cell.isMine()) {
+				if (!cell.isRevealed()) {
+					cell.setRevealed(true);
+					if (cell.getZoneValue() == 1) {
+						cell.getState().setGraphic(new ImageView(new Image("file:images/number1.png")));
+					} else if (cell.getZoneValue() == 2) {
+						cell.getState().setGraphic(new ImageView(new Image("file:images/number2.png")));
+					} else if (cell.getZoneValue() == 3) {
+						cell.getState().setGraphic(new ImageView(new Image("file:images/number3.png")));
+					} else if (cell.getZoneValue() == 4) {
+						cell.getState().setGraphic(new ImageView(new Image("file:images/number4.png")));
+					} else if (cell.getZoneValue() == 5) {
+						cell.getState().setGraphic(new ImageView(new Image("file:images/number5.png")));
+					} else if (cell.getZoneValue() == 6) {
+						cell.getState().setGraphic(new ImageView(new Image("file:images/number6.png")));
+					} else if (cell.getZoneValue() == 7) {
+						cell.getState().setGraphic(new ImageView(new Image("file:images/number7.png")));
+					} else if (cell.getZoneValue() == 8) {
+						cell.getState().setGraphic(new ImageView(new Image("file:images/number8.png")));
+					} else {
+						cell.getState().setGraphic(new ImageView(new Image("file:images/exposed.png")));
+						cell.revealNeighbors();
+					}
+
+				}
 			}
 		}
 	}
 
+	
+	public void leftMouseClicked(MouseEvent t, Label state, MinesweeperBoard board) {
+		if (!revealed && isMine && !marked) {
+			setRevealed(true);
+			this.state.setGraphic(new ImageView(new Image("file:images/hitmine.png")));
+			board.revealMines();
+		} else {
+			open(state);
+
+		}
+	}
+
 	public void rightMouseClicked(MouseEvent t, Label state) {
-		if(!revealed && !marked){
+		if (!revealed && !marked) {
 			setMarked(true);
 			try {
 				state.setGraphic(
@@ -126,7 +168,7 @@ public class Cell implements Subscribable<Integer>, Publishable<Integer>, EventL
 			} catch (FileNotFoundException e) {
 				e.printStackTrace();
 			}
-		}else if(!revealed && marked){
+		} else if (!revealed && marked) {
 			setMarked(false);
 			try {
 				state.setGraphic(
