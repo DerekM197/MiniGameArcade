@@ -57,9 +57,14 @@ public class MinesweeperBoard {
 	public void revealMines(){
 		for(Cell[] c : board){
 			for(Cell cell : c){
-				if(cell.isMine()){
+				if(cell.isMine() && !cell.isRevealed()){
 					cell.setRevealed(true);
 					cell.getState().setGraphic(new ImageView(new Image("file:images/mine.png")));
+				}else if(!cell.isMine() && cell.isMarked()){
+					cell.setRevealed(true);
+					cell.getState().setGraphic(new ImageView(new Image("file:images/wrongmine.png")));
+				}else{
+					cell.setRevealed(true);
 				}
 			}
 		}
