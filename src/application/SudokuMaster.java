@@ -5,6 +5,7 @@ import java.util.Random;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.Border;
 import javafx.scene.layout.GridPane;
 
 public class SudokuMaster {
@@ -15,9 +16,12 @@ public class SudokuMaster {
 	private GridPane MainBox;
 	private GridPane[] Boxes;
 	private TextField[][] TextBoard;
+	@FXML
+	private TextField TextMM72;
 	
 	public void initialize(){
 		System.out.println("StuffAndThings");
+		Boxes = MainBox.getChildren().toArray(new GridPane[0]);
 		TextBoard = getBoard();
 	}
 	
@@ -84,6 +88,7 @@ public class SudokuMaster {
 			int k = randy.nextInt(9);
 			TextBoard[j][k].setText(i+1+""); 
 			TextBoard[j][k].editableProperty().set(false);
+			TextBoard[j][k].applyCss();
 			
 		}
 	}
@@ -149,20 +154,31 @@ public class SudokuMaster {
 		}
 		return columns;
 	}
+	
+	public void checkBoard()
+	{
 		
-	public boolean checkFullBoard()
+		TextMM72.setText(""+checkFullBoard());
+	}
+		
+	private boolean checkFullBoard()
 	{
 		boolean valid = true; 
 		
 		TextField[][] columns = getColumns();
+		System.out.println("calling columns");
 		for(int i = 0;i<9;++i)
 		{//Does all columns
 			if(!checkArrSolution(columns[i]))
 			{
+				System.out.println("I: "+i);
 				valid = false;
 				i = 10;
-			}		
+			}	
+			
 		}
+		System.out.println("calling rows");
+		System.out.println("Valid: "+valid);
 		if(valid)
 		{
 			TextField[][] rows = getRows();
@@ -174,18 +190,24 @@ public class SudokuMaster {
 					i = 10;
 				}		
 			}
+			System.out.println("Valid: "+valid);
 			
 			if(valid)
 			{
+				System.out.println("calling Boxes");
 				for(int i = 0;i<9;++i)
 				{//Does all boxes
+					System.out.println("I: "+i);
+					
 					if(!checkArrSolution(Boxes[i].getChildren().toArray(new TextField[0]))){
+					
 						valid = false;
 						i = 10;
 					}
 				}
 			}
 		}
+		System.out.println("Valid: "+valid);
 		return valid;
 	}
 	
@@ -196,7 +218,7 @@ public class SudokuMaster {
 			ints.add(i);
 		}
 		boolean valid= true;
-		for(int i = 0;i< arr.length;++i)
+		for(int i = 0;i< 8;++i)
 		{
 			boolean good = false;
 			int input = -1;
@@ -221,6 +243,7 @@ public class SudokuMaster {
 				i=arr.length*2;
 			}
 		}
+		System.out.println("valid: "+valid);
 		return valid;
 	}
 }
