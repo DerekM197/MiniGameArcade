@@ -5,7 +5,6 @@ import java.util.Random;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.Border;
 import javafx.scene.layout.GridPane;
 
 public class SudokuMaster {
@@ -20,7 +19,7 @@ public class SudokuMaster {
 	private TextField TextMM72;
 	
 	public void initialize(){
-		System.out.println("StuffAndThings");
+		//System.out.println("StuffAndThings");
 		Boxes = MainBox.getChildren().toArray(new GridPane[0]);
 		TextBoard = getBoard();
 	}
