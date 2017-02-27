@@ -162,20 +162,13 @@ public class Cell implements EventListener {
 	public void rightMouseClicked(MouseEvent t, Label state) {
 		if (!revealed && !marked) {
 			setMarked(true);
-			try {
 				state.setGraphic(
-						new ImageView(new Image(new FileInputStream("C:\\opp\\MiniGameArcade\\images\\flag.png"))));
-			} catch (FileNotFoundException e) {
-				e.printStackTrace();
-			}
+						new ImageView(new Image("file:images/flag.png")));
 		} else if (!revealed && marked) {
 			setMarked(false);
-			try {
 				state.setGraphic(
-						new ImageView(new Image(new FileInputStream("C:\\opp\\MiniGameArcade\\images\\blank.png"))));
-			} catch (FileNotFoundException e) {
-				e.printStackTrace();
-			}
+						new ImageView(new Image("file:images/Tile.png")));
+			
 		}
 	}
 
