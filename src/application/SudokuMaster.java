@@ -2,6 +2,8 @@ package application;
 
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
@@ -9,22 +11,46 @@ import javafx.scene.layout.GridPane;
 
 public class SudokuMaster {
 	
-	public SudokuMaster() {
-	}
 	@FXML
 	private GridPane MainBox;
-	private GridPane[] Boxes;
-	private TextField[][] TextBoard;
 	@FXML
 	private TextField TextMM72;
+	@FXML
+	private TextField timer;
+	private GridPane[] Boxes;
+	private TextField[][] TextBoard;
 	
 	public void initialize(){
 		//System.out.println("StuffAndThings");
 		Boxes = MainBox.getChildren().toArray(new GridPane[0]);
+		
 		TextBoard = getBoard();
+		time();
+		
 	}
 	
-	//public void 
+	
+	int time = 0;
+	Timer ti = new Timer();
+	TimerTask task = new TimerTask()
+	{
+		@Override
+		public void run() { 
+			++time;
+			timer.setText("Time: "+time);
+		}
+	};
+	
+	public void time()
+	{
+		ti.scheduleAtFixedRate(task, 1000, 1000);
+	}
+	
+	private TimerTask test()
+	{
+		System.out.println("test");
+		return null;
+	}
 	
 	public void testing()
 	{

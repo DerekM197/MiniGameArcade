@@ -253,6 +253,7 @@
         </rowConstraints>
          <children>
             <TextField fx:id="timer" editable="false" promptText="Time: " text="Time: " />
+            <Button mnemonicParsing="false" onAction="#time" text="StartTimer" GridPane.rowIndex="1" />
          </children>
       </GridPane>
    </children>
