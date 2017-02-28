@@ -17,8 +17,11 @@ public class SudokuMaster {
 	private TextField TextMM72;
 	@FXML
 	private TextField timer;
+	@FXML
+	private TextField score;
 	private GridPane[] Boxes;
 	private TextField[][] TextBoard;
+	private float multi = 1;
 	
 	public void initialize(){
 		//System.out.println("StuffAndThings");
@@ -38,18 +41,13 @@ public class SudokuMaster {
 		public void run() { 
 			++time;
 			timer.setText("Time: "+time);
+			score.setText("Score: "+time*multi);
 		}
 	};
 	
 	public void time()
 	{
 		ti.scheduleAtFixedRate(task, 1000, 1000);
-	}
-	
-	private TimerTask test()
-	{
-		System.out.println("test");
-		return null;
 	}
 	
 	public void testing()
@@ -107,6 +105,8 @@ public class SudokuMaster {
 	
 	public void generateNewBoard()
 	{
+		
+		time = 0;
 		clearBoard();
 		Random randy = new Random();
 		for(int i = 0;i<9;++i)
@@ -115,9 +115,8 @@ public class SudokuMaster {
 			int k = randy.nextInt(9);
 			TextBoard[j][k].setText(i+1+""); 
 			TextBoard[j][k].editableProperty().set(false);
-			TextBoard[j][k].applyCss();
-			
 		}
+		timer.setText("Time: "+time);
 	}
 	
 	private TextField[][] getRows()
@@ -155,27 +154,20 @@ public class SudokuMaster {
 	private TextField[][] getColumns() {
 		TextField[][] columns = new TextField[9][9];
 		GridPane[] boxe =  MainBox.getChildren().toArray(new GridPane[0]);
-		for(int i =0,r=0;i<9;++i,r+=3)
-		{
-			for(int j = 0,k=0;j<9;++k)
-			{
-				if(i!=0&&i>5&&k==0)
-				{
+		for(int i =0,r=0;i<9;++i,r+=3){
+			for(int j = 0,k=0;j<9;++k){
+				if(i!=0&&i>5&&k==0){
 					k+=6;
-				}else if(i!=0&&i>2&&k==0)
-				{
+				}else if(i!=0&&i>2&&k==0){
 					k+=3;
 				}
 				TextField[] hi = boxe[k].getChildren().toArray(new TextField[0]);
-				for(int p = 0;p<3;++p,++j)
-				{
+				for(int p = 0;p<3;++p,++j){
 					columns[j][i] = hi[p+r];
 				
 				}
 			}
-			if(r==6)
-			{
-				
+			if(r==6){
 				r=-3;
 			}
 		}
@@ -184,14 +176,14 @@ public class SudokuMaster {
 	
 	public void checkBoard()
 	{
+		TextMM72.setText(checkFullBoard()? "You Win!!" : "Not Complete");
 		
-		TextMM72.setText(checkFullBoard()? "You Win!!" : "Not complete");
 	}
 		
 	private boolean checkFullBoard()
 	{
-		boolean valid = true; 
 		
+		boolean valid = true; 
 		TextField[][] columns = getColumns();
 		System.out.println("calling columns");
 		for(int i = 0;i<9;++i)
@@ -202,7 +194,6 @@ public class SudokuMaster {
 				valid = false;
 				i = 10;
 			}	
-			
 		}
 		System.out.println("calling rows");
 		System.out.println("Valid: "+valid);
@@ -252,6 +243,7 @@ public class SudokuMaster {
 			try{
 			input = Integer.parseInt(arr[i].getText());
 			}catch(NumberFormatException nfe){
+				multi+=0.1;
 				System.out.println("NumberFormatException");
 				return false;
 			}
@@ -271,6 +263,10 @@ public class SudokuMaster {
 			}
 		}
 		System.out.println("valid: "+valid);
+		if(!valid)
+		{
+			multi+=0.1;
+		}
 		return valid;
 	}
 }
