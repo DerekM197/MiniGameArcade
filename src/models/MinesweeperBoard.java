@@ -2,6 +2,7 @@ package models;
 
 import java.util.Random;
 
+import application.MinesweeperMain;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
@@ -9,7 +10,11 @@ public class MinesweeperBoard {
 	private Random randnum = new Random();
 	private int rowSize;
 	private int colSize;
+	private int numOfUnopend;
+	private int numOfBombs;
+	private boolean hasWon;
 	Cell[][] board;
+
 
 	public MinesweeperBoard(int rowSize, int colSize) {
 		setRowSize(rowSize);
@@ -17,6 +22,39 @@ public class MinesweeperBoard {
 		board = new Cell[rowSize][colSize];
 	}
 
+	public int getNumOfUnopend() {
+		return numOfUnopend;
+	}
+	
+	
+
+	public boolean isHasWon() {
+		return hasWon;
+	}
+
+	public void setHasWon(boolean hasWon) {
+		this.hasWon = hasWon;
+	}
+
+	public void setNumOfUnopend() {
+		this.numOfUnopend = colSize * rowSize;
+	}
+	
+	public void	takeNumOfUnopened(int num){
+		numOfUnopend -= num;
+	}
+
+	public int getNumOfBombs() {
+		return numOfBombs;
+	}
+
+	public void setNumOfBombs(int numOfBombs) {
+		if(numOfBombs == 256){
+			numOfBombs = 40;
+		}
+		this.numOfBombs = numOfBombs;
+	}
+	
 	public int getRowSize() {
 		return rowSize;
 	}
@@ -70,6 +108,23 @@ public class MinesweeperBoard {
 		}
 	}
 
+	public void win(){
+		for(Cell[] c : board){
+			for(Cell cell : c){
+				if(cell.isMine() && !cell.isRevealed()){
+					cell.setRevealed(true);
+					cell.getState().setGraphic(new ImageView(new Image("file:images/smilesun.png")));
+				}else if(!cell.isMine() && cell.isMarked()){
+					cell.setRevealed(true);
+					cell.getState().setGraphic(new ImageView(new Image("file:images/wrongmine.png")));
+				}else{
+					cell.setRevealed(true);
+				}
+			}
+		}
+		
+	}
+	
 	public void settingNeighbors() {
 		// //right
 		for (int i = 0; i < colSize; i++) {

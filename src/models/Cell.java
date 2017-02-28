@@ -1,9 +1,9 @@
 package models;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.EventListener;
+
+import application.MinesweeperMain;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -88,9 +88,10 @@ public class Cell implements EventListener {
 		this.marked = marked;
 	}
 
-	public void open(Label state) {
+	public void open(Label state, MinesweeperBoard board) {
 		if (!revealed && !isMine && !marked) {
 			setRevealed(true);
+			board.takeNumOfUnopened(1);
 			if (getZoneValue() == 1) {
 				this.state.setGraphic(new ImageView(new Image("file:images/number1.png")));
 			} else if (getZoneValue() == 2) {
@@ -109,18 +110,22 @@ public class Cell implements EventListener {
 				this.state.setGraphic(new ImageView(new Image("file:images/number8.png")));
 			} else {
 				this.state.setGraphic(new ImageView(new Image("file:images/exposed.png")));
-				revealNeighbors();
+				revealNeighbors(board);
 			}
 
 		}
+		if (board.getNumOfUnopend() == board.getNumOfBombs()) {
+			board.win();
+		}
 	}
 
-	public void revealNeighbors() {
+	public void revealNeighbors(MinesweeperBoard board) {
 
 		for (Cell cell : neighbors) {
 			if (!cell.isMine()) {
 				if (!cell.isRevealed()) {
 					cell.setRevealed(true);
+					board.takeNumOfUnopened(1);
 					if (cell.getZoneValue() == 1) {
 						cell.getState().setGraphic(new ImageView(new Image("file:images/number1.png")));
 					} else if (cell.getZoneValue() == 2) {
@@ -139,36 +144,37 @@ public class Cell implements EventListener {
 						cell.getState().setGraphic(new ImageView(new Image("file:images/number8.png")));
 					} else {
 						cell.getState().setGraphic(new ImageView(new Image("file:images/exposed.png")));
-						cell.revealNeighbors();
+						cell.revealNeighbors(board);
 					}
 
 				}
 			}
 		}
+		if (board.getNumOfUnopend() == board.getNumOfBombs()) {
+			board.win();
+		}
 	}
 
-	
 	public void leftMouseClicked(MouseEvent t, Label state, MinesweeperBoard board) {
 		if (!revealed && isMine && !marked) {
 			setRevealed(true);
 			this.state.setGraphic(new ImageView(new Image("file:images/hitmine.png")));
 			board.revealMines();
 		} else {
-			open(state);
-
+			open(state, board);
 		}
 	}
+	
+	
 
 	public void rightMouseClicked(MouseEvent t, Label state) {
 		if (!revealed && !marked) {
 			setMarked(true);
-				state.setGraphic(
-						new ImageView(new Image("file:images/flag.png")));
+			state.setGraphic(new ImageView(new Image("file:images/flag.png")));
 		} else if (!revealed && marked) {
 			setMarked(false);
-				state.setGraphic(
-						new ImageView(new Image("file:images/Tile.png")));
-			
+			state.setGraphic(new ImageView(new Image("file:images/Tile.png")));
+
 		}
 	}
 

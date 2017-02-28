@@ -1,6 +1,7 @@
 package application;
 
 import java.io.IOException;
+import java.util.Timer;
 
 import javafx.application.Application;
 import javafx.event.EventHandler;
@@ -21,6 +22,7 @@ import models.MinesweeperBoard;
 
 public class MinesweeperMain extends Application {
 
+	
 	private MinesweeperBoard board = new MinesweeperBoard(16, 16);
 	private Scene scene;
 
@@ -29,6 +31,8 @@ public class MinesweeperMain extends Application {
 	}
 
 	public BorderPane createContent() {
+		board.setNumOfUnopend();
+		board.setNumOfBombs(board.getNumOfUnopend());
 		BorderPane mineField = null;
 		try {
 			mineField = FXMLLoader.load(getClass().getResource("MinesweeperGUI.fxml"));
@@ -37,6 +41,9 @@ public class MinesweeperMain extends Application {
 		}
 
 		VBox menutab = new VBox();
+//		Timer timer = makeTimer();
+		Label playerTimer = new Label();
+		
 		Button backToMenu = new Button("Back to main menu");
 		Button newGame = new Button("New Game");
 		newGame.setOnMousePressed(e -> scene.setRoot(createContent()));
@@ -70,16 +77,17 @@ public class MinesweeperMain extends Application {
 			}
 		}
 		board.settingMines();
+
 		board.settingNeighbors();
-//		for (Cell[] cell : board.getBoard()) {
-//			for (Cell c : cell) {
-//				System.out.print(c.getNeighbors().size());
-//			}
-//			System.out.println("\n");
-//		}
 		return mineField;
 	}
-
+//
+//	public Timer makeTimer(){
+//		Timer timer = new Timer();
+//		TimerTask task = new TimerTask();
+//		
+//		return timer;
+//	}
 	@Override
 	public void start(Stage primaryStage) {
 		try {
@@ -92,13 +100,6 @@ public class MinesweeperMain extends Application {
 		}
 	}
 
-
-	public GridPane makeGrid(BorderPane mineField) {
-		GridPane grid = new GridPane();
-		grid.gridLinesVisibleProperty().set(true);
-		grid.alignmentProperty().set(Pos.CENTER);
-		return grid;
-	}
 
 	public static void main(String[] args) {
 		launch(args);
