@@ -1,0 +1,54 @@
+package models;
+
+import java.util.ArrayList;
+
+import interfaces.Subscribable;
+import javafx.scene.Group;
+import javafx.scene.control.Label;
+import javafx.scene.shape.Line;
+import javafx.scene.shape.Rectangle;
+
+public class Board implements Subscribable<ArrayList<Rectangle>>{
+
+	Group board = new Group();
+	Pellet food = new Pellet();
+	Line border1 = new Line(10, 10, 10, 490);
+	Line border2 = new Line(10, 10, 490, 10);
+	Line border3 = new Line(10, 490, 490, 490);
+	Line border4 = new Line(490, 10, 490, 490);
+	Snake snake;
+	
+	public Board(Snake snake){
+		board.getChildren().addAll(snake.getBody());
+		board.getChildren().addAll(border1, border2, border3, border4, food.placePellet());
+		this.snake = snake;
+	}
+	
+	public boolean didSnakeHitWall(){
+		if(snake.getHead().getX() < 10 || snake.getHead().getX() >= 490 || snake.getHead().getY() < 10 || snake.getHead().getY() >= 490){
+			return true;
+		}
+		return false;
+	}
+	
+	public boolean didSnakeHitPellet(){
+		if(snake.getHead().getX() == food.getLocation()[0] && snake.getHead().getY() == food.getLocation()[1]){
+			board.getChildren().remove(food.getPellet());
+			board.getChildren().add(food.placePellet());
+			board.getChildren().removeAll(snake.getBody());
+			snake.growSnake();
+			board.getChildren().addAll(snake.getBody());
+			return true;
+		}
+		return false;
+	}
+	
+	public Group getBoard(){
+		return board;
+	}
+
+	@Override
+	public void update(ArrayList<Rectangle> value) {
+		snake.setBody(value);
+	}
+}
