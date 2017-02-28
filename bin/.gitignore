@@ -1,4 +1,8 @@
 /application/
+<<<<<<< HEAD
 /interfaces/
 /models/
 /xmls/
+=======
+/models/
+>>>>>>> origin/master
