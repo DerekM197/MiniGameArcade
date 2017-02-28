@@ -22,18 +22,42 @@ import javafx.stage.Stage;
 import models.Cell;
 import models.MinesweeperBoard;
 
-public class MinesweeperMain extends Application {
-
-	
+public class MinesweeperMain extends Application {	
+	private int colSize;
+	private int rowSize;
 	private MinesweeperBoard board = new MinesweeperBoard(16, 16);
 	private Scene scene;
 	private TextField timer = new TextField();
 	private GridPane grid;
-	Timer ti;
-	int time;
+	private Timer ti;
+	private int time;
+	public int getColSize() {
+		return colSize;
+	}
+
+
+
+	public void setColSize(int colSize) {
+		this.colSize = colSize;
+	}
+
+
+
+	public int getRowSize() {
+		return rowSize;
+	}
+
+
+
+	public void setRowSize(int rowSize) {
+		this.rowSize = rowSize;
+	}
+
 	public void setSene(Scene value) {
 		scene = value;
 	}
+	
+	
 
 	public BorderPane createContent() {
 		time = 0;
