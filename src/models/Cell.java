@@ -2,8 +2,6 @@ package models;
 
 import java.util.ArrayList;
 import java.util.EventListener;
-
-import application.MinesweeperMain;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;

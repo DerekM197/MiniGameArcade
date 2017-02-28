@@ -2,7 +2,6 @@ package models;
 
 import java.util.Random;
 
-import application.MinesweeperMain;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
