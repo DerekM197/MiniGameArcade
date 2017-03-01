@@ -14,6 +14,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
@@ -27,10 +28,10 @@ public class MinesweeperMain extends Application {
 	private int rowSize;
 	private MinesweeperBoard board = new MinesweeperBoard(16, 16);
 	private Scene scene;
-	private TextField timer = new TextField();
+//	private TextField timer = new TextField();
 	private GridPane grid;
-	private Timer ti;
-	private int time;
+//	private Timer ti;
+//	private int time;
 	public int getColSize() {
 		return colSize;
 	}
@@ -60,7 +61,7 @@ public class MinesweeperMain extends Application {
 	
 
 	public BorderPane createContent() {
-		time = 0;
+//		time = 0;
 		board.setNumOfUnopend();
 		board.setNumOfBombs(board.getNumOfUnopend());
 		BorderPane mineField = null;
@@ -90,13 +91,15 @@ public class MinesweeperMain extends Application {
 				Cell cell = new Cell();
 				board.getBoard()[i][j] = cell;
 				board.getBoard()[i][j].setState(state);
-				state.setOnMousePressed(new EventHandler<MouseEvent>() {
+				state.setOnMouseClicked(new EventHandler<MouseEvent>() {
 					@Override
 					public void handle(MouseEvent t) {
-						if (t.isPrimaryButtonDown()) {
+						if (t.getButton() == MouseButton.PRIMARY) {
 							cell.leftMouseClicked(t, state, board);
 						} else if (t.isSecondaryButtonDown()) {
 							cell.rightMouseClicked(t, state);
+						}else if(t.getButton() == MouseButton.PRIMARY && t.getButton() == MouseButton.SECONDARY){
+							cell.both();
 						}
 					}
 				});
@@ -104,24 +107,27 @@ public class MinesweeperMain extends Application {
 			}
 		}
 		mineField.setCenter(grid);
-		ti = new Timer();
-		TimerTask task = new TimerTask()
-		{
-			@Override
-			public void run() { 
-				++time;
-				timer.setText("Time in seconds: "+time);
-			}
-		};
-		ti.scheduleAtFixedRate(task, 1000, 1000);
-		mineField.setBottom(timer);
+//		ti = new Timer();
+//		TimerTask task = new TimerTask()
+//		{
+//			@Override
+//			public void run() { 
+//				++time;
+//				
+//				timer.setText("Time in seconds: "+time);
+//			
+//			}
+//		};
+//		ti.scheduleAtFixedRate(task, 1000, 1000);
+//		mineField.setBottom(timer);
 		board.settingMines();
 		board.settingNeighbors();
 		return mineField;
 	}
 
 	public void purgeBoardAndTimer(){
-		ti.cancel();
+//		ti.cancel();
+//		ti = null;
 		grid = null;
 		scene.setRoot(createContent());
 	}

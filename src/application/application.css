@@ -5,7 +5,7 @@ fx-Property{
 TextField{
 	
 -fx-border-style: solid;
--fx-border-color: 000;
+-fx-border-color: #000;
 -fx-border-width: 1px;
 -fx-pref-width: 20px;
 -fx-max-width: 20px;
@@ -15,19 +15,47 @@ TextField{
 -fx-scale-y:2;
 -fx-translate-x: 15px;
 -fx-padding: 0.0px,0.0px,0.0px,100.0%;
-
+	
 }
 GridPane{
 	-fx-border-style: solid;
 	-fx-border-color: #000;
 	-fx-background-color: #676767;
 	-fx-snap-to-pixel: true;
-	-fx-border-width: 1px;
+	-fx-border-width: 3px;
 }
 Label{
 	-fx-background-color: #fff;
 	-fx-border-color: #000;
 	-fx-border-style: solid;
 }
+
+#tes{
+	-fx-border-style: solid;
+-fx-border-color: #000;
+-fx-border-width: 1px;
+-fx-pref-width: 130px;
+-fx-max-width: 130px;
+-fx-max-height: 20px;
+-fx-pref-height: 20px;
+-fx-scale-x:1;
+-fx-scale-y:1;
+-fx-translate-x: 0px;
+-fx-padding: 0.0px,0.0px,0.0px,100.0%;
+}
+
+#userScoreInput{
+		-fx-border-style: solid;
+-fx-border-color: #000;
+-fx-border-width: 1px;
+-fx-pref-width: 130px;
+-fx-max-width: 130px;
+-fx-max-height: 20px;
+-fx-pref-height: 20px;
+-fx-scale-x:1;
+-fx-scale-y:1;
+-fx-translate-x: 0px;
+-fx-padding: 0.0px,0.0px,0.0px,100.0%;
+	}
 
 

@@ -1,47 +1,53 @@
 package application;
 
+import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.concurrent.SynchronousQueue;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
+import models.Score;
 
 public class SudokuMaster {
 	
 	@FXML
 	private GridPane MainBox;
 	@FXML
-	private TextField TextMM72;
+	private TextField Complete;
 	@FXML
 	private TextField timer;
 	@FXML
 	private TextField score;
+	@FXML
+	private TextField user;
 	private GridPane[] Boxes;
 	private TextField[][] TextBoard;
-	private float multi = 1;
-	
-	public void initialize(){
-		//System.out.println("StuffAndThings");
-		Boxes = MainBox.getChildren().toArray(new GridPane[0]);
-		
-		TextBoard = getBoard();
-		time();
-		
-	}
-	
-	
+	private int multi = 1;
 	int time = 0;
 	Timer ti = new Timer();
+	
+	
+	public void initialize(){
+		Boxes = MainBox.getChildren().toArray(new GridPane[0]);
+		TextBoard = getBoard();
+		time();
+	}
+	
 	TimerTask task = new TimerTask()
 	{
 		@Override
 		public void run() { 
 			++time;
 			timer.setText("Time: "+time);
-			score.setText("Score: "+time*multi);
+			score.setText("Score: "+(time*multi));
 		}
 	};
 	
@@ -50,8 +56,85 @@ public class SudokuMaster {
 		ti.scheduleAtFixedRate(task, 1000, 1000);
 	}
 	
-	public void testing()
+	private Score addNewScore()
 	{
+		int score = time*multi;
+		String name = user.getText();
+		return new Score(name,score);
+	}
+	
+	public void scoreProcess()
+	{
+		ArrayList<Score> score = readScores();
+		score.add(addNewScore());
+		score = sort(score);
+		saveScores(score);
+	}
+	
+	public static ArrayList<Score> sort(ArrayList<Score> scores)
+	{
+	        Score temp;
+	        for (int i = 1; i < scores.size(); ++i) 
+	        {
+	            for(int j = i ; j > 0 ; --j)
+	            {
+	                if(scores.get(j).getScore()> scores.get(j-1).getScore()){
+	                    temp = scores.get(j);
+	                    scores.set(j,scores.get(j-1));
+	                    scores.set(j-1, temp);
+	                }
+	            }
+	        }			
+		return scores;
+	}
+	
+	private String getScoreString()
+	{
+		try {
+			return new String(Files.readAllBytes(Paths.get("LowScores.txt")));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		System.out.println("not loaded correctly");
+		return new String("error");
+	}
+	
+	private ArrayList<Score> readScores()
+	{
+		ArrayList<Score> scores = new ArrayList<>(10);
+		String[] arrScoreSting= getScoreString().split("\n");
+		if(arrScoreSting.length >0)
+		{
+			System.out.println("reading scores");
+			for(int i = 0;i<arrScoreSting.length;++i)
+			{
+				String[] param = arrScoreSting[i].split(" : ");
+				scores.add(new Score(param[1],Integer.parseInt(param[0])));
+			}
+		}
+		return scores;
+	}
+	
+	private void saveScores(ArrayList<Score> scores)
+	{
+		try {
+			FileWriter fi = new FileWriter("LowScores.txt",false);
+			StringBuilder str = new StringBuilder();
+			for(int i = 0;i<scores.size();++i)
+			{
+				str.append(scores.get(i).toString());
+				str.append("\n");
+			}
+			fi.write(str.toString());
+			fi.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+			System.out.println("scores not saved");
+		}
+		System.out.println("scores saved");
+	}
+	
+	public void testing(){
 		String[] nums = {"1","2","3","4","5","6","7","8","9"};
 		for(int i = 0;i<9;++i)
 		{
@@ -75,7 +158,6 @@ public class SudokuMaster {
 				{
 					TextBoard[i][j].setText("");
 				}
-				
 			}
 		}
 	}
@@ -105,10 +187,10 @@ public class SudokuMaster {
 	
 	public void generateNewBoard()
 	{
-		
 		time = 0;
 		clearBoard();
 		Random randy = new Random();
+		
 		for(int i = 0;i<9;++i)
 		{
 			int j = randy.nextInt(9);
@@ -117,6 +199,27 @@ public class SudokuMaster {
 			TextBoard[j][k].editableProperty().set(false);
 		}
 		timer.setText("Time: "+time);
+	}
+	
+	public void generateSquareBoard()
+	{
+		time = 0;
+		clearBoard();
+		ArrayList<Integer> numbs = new ArrayList<>(10);
+		for(int i = 1;i<10;++i)
+		{
+			System.out.println(i);
+			numbs.add(i);
+		}
+		Random randy = new Random();
+		for(int i = 0;i<9;++i)
+		{
+			TextField[] arr = Boxes[i].getChildren().toArray(new TextField[0]);
+			int pick = randy.nextInt(numbs.size());
+			arr[4].setText(numbs.get(pick)+"");
+			numbs.remove(pick);
+			arr[4].editableProperty().set(false);	
+		}
 	}
 	
 	private TextField[][] getRows()
@@ -137,14 +240,11 @@ public class SudokuMaster {
 				TextField[] hi = boxe[k].getChildren().toArray(new TextField[0]);
 				for(int p = 0;p<3;++p,++j)
 				{
-					//System.out.println("I: "+i+" R: "+r+" J: "+j+" K: "+k+" P: "+p+" C: "+count++);
-					rows[i][j] = hi[p+r];
-				
+					rows[i][j] = hi[p+r];	
 				}
 			}
 			if(r==6)
-			{
-				
+			{			
 				r=-3;
 			}
 		}
@@ -176,27 +276,28 @@ public class SudokuMaster {
 	
 	public void checkBoard()
 	{
-		TextMM72.setText(checkFullBoard()? "You Win!!" : "Not Complete");
-		
+		Complete.setText(checkFullBoard()? "You Win!!" : "Not Complete");	
+		Complete.setText("You Win!!");
+		if(Complete.getText().equals("You Win!!"));
+		{
+			task.cancel();
+			user.editableProperty().set(true);
+			user.setOpacity(100);
+		}
 	}
 		
 	private boolean checkFullBoard()
 	{
-		
 		boolean valid = true; 
 		TextField[][] columns = getColumns();
-		System.out.println("calling columns");
 		for(int i = 0;i<9;++i)
 		{//Does all columns
 			if(!checkArrSolution(columns[i]))
 			{
-				System.out.println("I: "+i);
 				valid = false;
 				i = 10;
 			}	
 		}
-		System.out.println("calling rows");
-		System.out.println("Valid: "+valid);
 		if(valid)
 		{
 			TextField[][] rows = getRows();
@@ -208,15 +309,10 @@ public class SudokuMaster {
 					i = 10;
 				}		
 			}
-			System.out.println("Valid: "+valid);
-			
 			if(valid)
 			{
-				System.out.println("calling Boxes");
 				for(int i = 0;i<9;++i)
 				{//Does all boxes
-					System.out.println("I: "+i);
-					
 					if(!checkArrSolution(Boxes[i].getChildren().toArray(new TextField[0]))){
 					
 						valid = false;
@@ -262,7 +358,7 @@ public class SudokuMaster {
 				i=arr.length*2;
 			}
 		}
-		System.out.println("valid: "+valid);
+		//System.out.println("valid: "+valid);
 		if(!valid)
 		{
 			multi+=0.1;
