@@ -175,5 +175,9 @@ public class Cell implements EventListener {
 
 		}
 	}
+	
+	public void both(){
+		System.out.println("hello");
+	}
 
 }
