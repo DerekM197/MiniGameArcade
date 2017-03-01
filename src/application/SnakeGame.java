@@ -111,6 +111,8 @@ public class SnakeGame extends Application{
 					goRight = false;
 				}
 				break;
+			default:
+				break;
 			}
 		});
 		timer = new AnimationTimer() {
