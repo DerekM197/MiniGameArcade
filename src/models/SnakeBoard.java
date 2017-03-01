@@ -11,7 +11,7 @@ import javafx.scene.shape.Rectangle;
 public class SnakeBoard implements Subscribable<ArrayList<Rectangle>>{
 
 	Group board = new Group();
-	Pellet food = new Pellet();
+	Pellet food;
 	Line border1 = new Line(10, 10, 10, 490);
 	Line border2 = new Line(10, 10, 490, 10);
 	Line border3 = new Line(10, 490, 490, 490);
@@ -19,9 +19,11 @@ public class SnakeBoard implements Subscribable<ArrayList<Rectangle>>{
 	Snake snake;
 	
 	public SnakeBoard(Snake snake){
+		this.snake = snake;
+		food = new Pellet(snake);
 		board.getChildren().addAll(snake.getBody());
 		board.getChildren().addAll(border1, border2, border3, border4, food.placePellet());
-		this.snake = snake;
+		
 	}
 	
 	public boolean didSnakeHitWall(){

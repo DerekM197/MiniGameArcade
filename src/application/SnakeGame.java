@@ -126,6 +126,7 @@ public class SnakeGame extends Application{
 				int dy = 0;
 				if(goUp){
 					dy-=10;
+					dx = 0;
 					snake.moveSnake(dx, dy);
 					if(board.didSnakeHitWall()){
 						displayLoss();
@@ -144,6 +145,7 @@ public class SnakeGame extends Application{
 				}
 				if(goRight){
 					dx+=10;
+					dy = 0;
 					snake.moveSnake(dx, dy);
 					if(board.didSnakeHitWall()){
 						displayLoss();
@@ -162,6 +164,7 @@ public class SnakeGame extends Application{
 				}
 				if(goDown){
 					dy+=10;
+					dx = 0;
 					snake.moveSnake(dx, dy);
 					if(board.didSnakeHitWall()){
 						displayLoss();
@@ -180,6 +183,7 @@ public class SnakeGame extends Application{
 				}
 				if(goLeft){
 					dx-=10;
+					dy = 0;
 					snake.moveSnake(dx, dy);
 					if(board.didSnakeHitWall()){
 						displayLoss();
