@@ -96,7 +96,7 @@ public class MinesweeperMain extends Application {
 					public void handle(MouseEvent t) {
 						if (t.getButton() == MouseButton.PRIMARY) {
 							cell.leftMouseClicked(t, state, board);
-						} else if (t.isSecondaryButtonDown()) {
+						} else if (t.getButton() == MouseButton.SECONDARY) {
 							cell.rightMouseClicked(t, state);
 						}else if(t.getButton() == MouseButton.PRIMARY && t.getButton() == MouseButton.SECONDARY){
 							cell.both();
