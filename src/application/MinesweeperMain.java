@@ -110,6 +110,8 @@ public class MinesweeperMain extends Application {
 			@Override
 			public void run() { 
 				++time;
+				System.out.println(time);
+				System.out.println(timer);
 				timer.setText("Time in seconds: "+time);
 			}
 		};

@@ -239,15 +239,15 @@
         </rowConstraints>
          <children>
             <Button fx:id="check" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#checkBoard" prefHeight="25.0" prefWidth="130.0" text="Check for completion" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
-            <Button fx:id="NewGame" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#generateNewBoard" prefHeight="25.0" prefWidth="130.0" text="Start new game" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
-            <TextField fx:id="TextMM72" editable="false" onKeyReleased="#testing" prefHeight="22.0" prefWidth="100.0" promptText="false" text="Not Complete" GridPane.rowIndex="1">
+            <Button fx:id="NewGame" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#generateSquareBoard" prefHeight="25.0" prefWidth="130.0" text="Start new game" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+            <TextField id="tes" fx:id="Complete" editable="false" onKeyReleased="#testing" prefHeight="22.0" prefWidth="100.0" promptText="false" text="Not Complete" GridPane.rowIndex="1">
                <GridPane.margin>
                   <Insets left="10.0" />
                </GridPane.margin>
                <padding>
                   <Insets bottom="2.0" left="2.0" right="2.0" />
                </padding></TextField>
-            <TextField fx:id="TextMM721" editable="false" onKeyReleased="#testing" prefHeight="22.0" prefWidth="100.0" promptText="Completion" text="Completion">
+            <TextField id="tes" fx:id="Completion" editable="false" onKeyReleased="#testing" prefHeight="22.0" prefWidth="100.0" promptText="Completion" text="Completion">
                <GridPane.margin>
                   <Insets left="10.0" />
                </GridPane.margin>
@@ -267,14 +267,14 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <TextField fx:id="timer" editable="false" prefHeight="22.0" prefWidth="100.0" promptText="Time: " text="Time: " GridPane.rowIndex="2">
+            <TextField id="tes" fx:id="timer" editable="false" prefHeight="22.0" prefWidth="100.0" promptText="Time: " text="Time: " GridPane.rowIndex="2">
                <GridPane.margin>
                   <Insets left="10.0" />
                </GridPane.margin>
                <padding>
                   <Insets bottom="2.0" left="2.0" right="2.0" />
                </padding></TextField>
-            <TextField fx:id="score" editable="false" prefHeight="22.0" prefWidth="100.0" text="Score: " GridPane.rowIndex="3">
+            <TextField id="tes" fx:id="score" editable="false" prefHeight="22.0" prefWidth="100.0" text="Score: " GridPane.rowIndex="3">
                <GridPane.margin>
                   <Insets left="10.0" />
                </GridPane.margin>
@@ -282,6 +282,7 @@
                   <Insets bottom="2.0" left="2.0" right="2.0" />
                </padding>
             </TextField>
+            <TextField id="userScoreInput" fx:id="user" editable="false" onAction="#scoreProcess" opacity="0.0" promptText="Enter your name here" />
          </children>
       </GridPane>
       <GridPane prefHeight="150.0" prefWidth="150.0" GridPane.columnIndex="3">

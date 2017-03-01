@@ -16,6 +16,12 @@ public class Score {
 		this.score = score;
 	}
 	
+	@Override
+	public String toString()
+	{
+		return score+" : "+name;
+	}
+	
 	
 
 }
