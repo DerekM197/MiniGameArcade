@@ -13,7 +13,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
-import models.Board;
+import models.SnakeBoard;
 import models.Snake;
 
 public class SnakeGame extends Application{
@@ -21,7 +21,7 @@ public class SnakeGame extends Application{
 	Stage window = new Stage();
 	int score = 0;
 	Snake snake = new Snake();
-	Board board = new Board(snake);
+	SnakeBoard board = new SnakeBoard(snake);
 	boolean goUp, goRight, goDown, goLeft;
 	BorderPane layout;
 	AnimationTimer timer;
@@ -72,6 +72,12 @@ public class SnakeGame extends Application{
 					goUp = false;
 					goRight = false;
 				}
+				break;
+			default:
+				goUp = false;
+				goDown = false;
+				goLeft = false;
+				goRight = false;
 				break;
 			}
 		});
@@ -132,6 +138,9 @@ public class SnakeGame extends Application{
 						printScore.setTextFill(Paint.valueOf("#FFFFFF"));
 						BorderPane.setAlignment(printScore, Pos.CENTER);
 					}
+					if(snake.didSnakeHitItself()){
+						displayLoss();
+					}
 				}
 				if(goRight){
 					dx+=10;
@@ -146,6 +155,9 @@ public class SnakeGame extends Application{
 						printScore.setFont(Font.font("Berlin Sans FB", 16));
 						printScore.setTextFill(Paint.valueOf("#FFFFFF"));
 						BorderPane.setAlignment(printScore, Pos.CENTER);
+					}
+					if(snake.didSnakeHitItself()){
+						displayLoss();
 					}
 				}
 				if(goDown){
@@ -162,6 +174,9 @@ public class SnakeGame extends Application{
 						printScore.setTextFill(Paint.valueOf("#FFFFFF"));
 						BorderPane.setAlignment(printScore, Pos.CENTER);
 					}
+					if(snake.didSnakeHitItself()){
+						displayLoss();
+					}
 				}
 				if(goLeft){
 					dx-=10;
@@ -177,6 +192,9 @@ public class SnakeGame extends Application{
 						printScore.setTextFill(Paint.valueOf("#FFFFFF"));
 						BorderPane.setAlignment(printScore, Pos.CENTER);
 					}
+					if(snake.didSnakeHitItself()){
+						displayLoss();
+					}
 				}
 			}
 			
@@ -191,7 +209,7 @@ public class SnakeGame extends Application{
 		Label lose = new Label("You have lost");
 		lose.setFont(Font.font("Berlin Sans FB", 24));
 		lose.setTextFill(Paint.valueOf("#FFFFFF"));
-		Button menuButton = new Button("Main menu");
+		Button menuButton = new Button("Exit to Snake Menu");
 		DropShadow drop = new DropShadow();
 		menuButton.setPrefWidth(150);
 		menuButton.setPrefHeight(25);

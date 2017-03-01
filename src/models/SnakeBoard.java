@@ -8,7 +8,7 @@ import javafx.scene.control.Label;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 
-public class Board implements Subscribable<ArrayList<Rectangle>>{
+public class SnakeBoard implements Subscribable<ArrayList<Rectangle>>{
 
 	Group board = new Group();
 	Pellet food = new Pellet();
@@ -18,7 +18,7 @@ public class Board implements Subscribable<ArrayList<Rectangle>>{
 	Line border4 = new Line(490, 10, 490, 490);
 	Snake snake;
 	
-	public Board(Snake snake){
+	public SnakeBoard(Snake snake){
 		board.getChildren().addAll(snake.getBody());
 		board.getChildren().addAll(border1, border2, border3, border4, food.placePellet());
 		this.snake = snake;

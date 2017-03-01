@@ -18,6 +18,10 @@ public class Pellet {
 		Random rand = new Random();
 		int randX = rand.nextInt((48) + 1) * 10;
 		int randY = rand.nextInt((48) + 1) * 10;
+		if((randX < 10) || (randX > 490) || (randY < 10) || (randX > 490)){
+		 randX = 250;
+		 randY = 250;
+		}
 		location[0] = randX;
 		location[1] = randY;
 		food = new Rectangle(randX, randY, 10, 10);

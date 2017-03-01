@@ -24,7 +24,7 @@ public class SnakeMenu extends Application{
 		VBox layout = FXMLLoader.load(getClass().getResource("../xmls/SnakeXML.fxml"));
 		Button playButton = new Button("Play");
 		DropShadow drop = new DropShadow();
-		playButton.setPrefWidth(60);
+		playButton.setPrefWidth(150);
 		playButton.setPrefHeight(25);
 		playButton.setFont(Font.font("Berlin Sans FB", 12));
 		playButton.setEffect(drop);
@@ -36,13 +36,18 @@ public class SnakeMenu extends Application{
 				
 			}
 		});
-		Button exitButton = new Button("Exit");
-		exitButton.setPrefWidth(60);
+		Button exitButton = new Button("Exit to Main Menu");
+		exitButton.setPrefWidth(150);
 		exitButton.setPrefHeight(25);
 		exitButton.setFont(Font.font("Berlin Sans FB", 12));
 		exitButton.setEffect(drop);
 		exitButton.setOnAction(e -> {
-			//TODO
+			MainMenu menu = new MainMenu();
+			try {
+				menu.start(window);
+			} catch (Exception e1) {
+				
+			}
 		});
 		layout.getChildren().addAll(playButton, exitButton);
 		Scene scene = new Scene(layout);

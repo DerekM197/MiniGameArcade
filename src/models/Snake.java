@@ -10,6 +10,8 @@ public class Snake implements Publishable<ArrayList<Rectangle>> {
 
 	ArrayList<Rectangle> body = new ArrayList<>();
 	Subscribable<ArrayList<Rectangle>> sub;
+	int snakeDirectionX;
+	int snakeDirectionY;
 	
 	public Snake(){
 		for(int i = 0; i < 3; i++){
@@ -44,15 +46,20 @@ public class Snake implements Publishable<ArrayList<Rectangle>> {
 		}else if(dx == dy || dx < 0 && dy > 0 || dx > 0 && dy < 0){
 			return;
 		}
+		if(snakeDirectionX < 0 && dx > 0 || snakeDirectionX > 0 && dx < 0){
+			dx = 0;
+		}
+		if(snakeDirectionY < 0 && dy > 0 || snakeDirectionY > 0 && dy < 0){
+			dy = 0;
+		}
 		for(int i = body.size()-1; i > 0; i--){
 			body.get(i).setX(body.get(i-1).getX());
 			body.get(i).setY(body.get(i-1).getY());
 		}
 		body.get(0).setX(body.get(0).getX() + dx);
 		body.get(0).setY(body.get(0).getY() + dy);
-		if(didSnakeHitItself()){
-			//TODO
-		}
+		snakeDirectionX = dx;
+		snakeDirectionY = dy;
 	}
 	
 	public void growSnake(){
