@@ -1,10 +1,14 @@
-<<<<<<< HEAD
+/MINIGAME ARCADE.png
+/Snek.png
+/Tile.png
+/application/
 /blank.png
 /exposed.png
 /flag.png
 /hitmine.png
 /interfaces/
 /mine.png
+/models/
 /number1.png
 /number2.png
 /number3.png
@@ -14,21 +18,7 @@
 /number7.png
 /number8.png
 /smile.png
-/wrongmine.png
-=======
-/application/
-<<<<<<< HEAD
-/models/
-/xmls/
-/MINIGAME ARCADE.png
-=======
-<<<<<<< HEAD
-=======
-/models/
->>>>>>> origin/master
-<<<<<<< HEAD
+/smilesun.png
 /title-textonly.png
-=======
->>>>>>> origin/master
->>>>>>> origin/master
->>>>>>> origin/master
+/wrongmine.png
+/xmls/
