@@ -172,12 +172,8 @@ public class Cell implements EventListener {
 		} else if (!revealed && marked) {
 			setMarked(false);
 			state.setGraphic(new ImageView(new Image("file:images/Tile.png")));
-
+			
 		}
 	}
 	
-	public void both(){
-		System.out.println("hello");
-	}
-
 }

@@ -50,6 +50,8 @@ public class MinesweeperBoard {
 	public void setNumOfBombs(int numOfBombs) {
 		if(numOfBombs == 256){
 			numOfBombs = 40;
+		}else if(numOfBombs == 18){
+			
 		}
 		this.numOfBombs = numOfBombs;
 	}
@@ -74,11 +76,15 @@ public class MinesweeperBoard {
 		return board;
 	}
 
-	public void settingMines() {
+	public void settingMines(int numOfMines) {
 		int i, j;
 
-		for (int counter = 0; counter < 40; counter++) {
+		for (int counter = 0; counter < numOfMines; counter++) {
+			if(colSize > 16){
+				i = randnum.nextInt(rowSize);
+			}else{
 			i = randnum.nextInt(colSize);
+			}
 			j = randnum.nextInt(colSize);
 			if (board[i][j].isMine()) {
 				counter--;
@@ -126,7 +132,7 @@ public class MinesweeperBoard {
 	
 	public void settingNeighbors() {
 		// //right
-		for (int i = 0; i < colSize; i++) {
+		for (int i = 0; i < rowSize; i++) {
 			for (int j = 0; j < colSize - 1; j++) {
 				if (board[i][j + 1].isMine()) {
 					board[i][j].setZoneValue(1);
@@ -135,7 +141,7 @@ public class MinesweeperBoard {
 			}
 		}
 		// left
-		for (int i = 0; i < colSize; i++) {
+		for (int i = 0; i < rowSize; i++) {
 			for (int j = 1; j < colSize; j++) {
 				if (board[i][j - 1].isMine()) {
 					board[i][j].setZoneValue(1);
@@ -144,7 +150,7 @@ public class MinesweeperBoard {
 			}
 		}
 		// bottom
-		for (int i = 0; i < colSize - 1; i++) {
+		for (int i = 0; i < rowSize - 1; i++) {
 			for (int j = 0; j < colSize; j++) {
 				if (board[i + 1][j].isMine()) {
 					board[i][j].setZoneValue(1);
@@ -153,7 +159,7 @@ public class MinesweeperBoard {
 			}
 		}
 		// top
-		for (int i = 1; i < colSize; i++) {
+		for (int i = 1; i < rowSize; i++) {
 			for (int j = 0; j < colSize; j++) {
 				if (board[i - 1][j].isMine()) {
 					board[i][j].setZoneValue(1);
@@ -162,7 +168,7 @@ public class MinesweeperBoard {
 			}
 		}
 		// right bot
-		for (int i = 0; i < colSize - 1; i++) {
+		for (int i = 0; i < rowSize - 1; i++) {
 			for (int j = 0; j < colSize - 1; j++) {
 				if (board[i + 1][j + 1].isMine()) {
 					board[i][j].setZoneValue(1);
@@ -171,7 +177,7 @@ public class MinesweeperBoard {
 			}
 		}
 		// left top
-		for (int i = 1; i < colSize; i++) {
+		for (int i = 1; i < rowSize; i++) {
 			for (int j = 1; j < colSize; j++) {
 				if (board[i - 1][j - 1].isMine()) {
 					board[i][j].setZoneValue(1);
@@ -180,7 +186,7 @@ public class MinesweeperBoard {
 			}
 		}
 		// right top
-		for (int i = 1; i < colSize; i++) {
+		for (int i = 1; i < rowSize; i++) {
 			for (int j = 0; j < colSize - 1; j++) {
 				if (board[i - 1][j + 1].isMine()) {
 					board[i][j].setZoneValue(1);
@@ -189,7 +195,7 @@ public class MinesweeperBoard {
 			}
 		}
 		// left bot        //colSize -1 = 15 colsize -2 = 14
-		for (int i = 0; i < colSize - 1; i++) {
+		for (int i = 0; i < rowSize - 1; i++) {
 			for (int j = 1; j < colSize; j++) {
 				if (board[i + 1][j - 1].isMine()) {
 					board[i][j].setZoneValue(1);
