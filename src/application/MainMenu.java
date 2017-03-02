@@ -31,8 +31,13 @@ public class MainMenu extends Application{
 		playMinesweeper.setFont(Font.font("Berlin Sans FB", 12));
 		playMinesweeper.setEffect(drop);
 		playMinesweeper.setOnAction(e -> {
-			MinesweeperMain minesweeper = new MinesweeperMain();
-			minesweeper.start(window);
+			MinesweeperMenu minesweeper = new MinesweeperMenu();
+			try {
+				minesweeper.start(window);
+			} catch (Exception e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 		});
 		Button playSudoku = new Button("Play Sudoku");
 		playSudoku.setPrefWidth(200);
