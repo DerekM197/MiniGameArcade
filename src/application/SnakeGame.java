@@ -73,12 +73,6 @@ public class SnakeGame extends Application{
 					goRight = false;
 				}
 				break;
-			default:
-				goUp = false;
-				goDown = false;
-				goLeft = false;
-				goRight = false;
-				break;
 			}
 		});
 		scene.setOnKeyReleased(e -> {
@@ -110,8 +104,6 @@ public class SnakeGame extends Application{
 				}else{
 					goRight = false;
 				}
-				break;
-			default:
 				break;
 			}
 		});
