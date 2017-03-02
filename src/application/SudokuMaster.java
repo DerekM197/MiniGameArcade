@@ -5,12 +5,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Random;
-import java.util.Timer;
-import java.util.TimerTask;
-import java.util.concurrent.SynchronousQueue;
-
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
@@ -30,31 +25,32 @@ public class SudokuMaster {
 	private TextField user;
 	private GridPane[] Boxes;
 	private TextField[][] TextBoard;
+	boolean haveWon = false;
 	private int multi = 1;
 	int time = 0;
-	Timer ti = new Timer();
 	
 	
 	public void initialize(){
 		Boxes = MainBox.getChildren().toArray(new GridPane[0]);
 		TextBoard = getBoard();
-		time();
+		th.start();
 	}
 	
-	TimerTask task = new TimerTask()
-	{
-		@Override
-		public void run() { 
-			++time;
-			timer.setText("Time: "+time);
-			score.setText("Score: "+(time*multi));
+	Thread th = new Thread(){
+		public void run(){
+			while(!haveWon)
+			{
+				++time;
+				timer.setText("Time: "+time);
+				score.setText("Score: "+(time*multi));
+				try {
+					th.sleep(1000);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+			}
 		}
 	};
-	
-	public void time()
-	{
-		ti.scheduleAtFixedRate(task, 1000, 1000);
-	}
 	
 	private Score addNewScore()
 	{
@@ -73,18 +69,18 @@ public class SudokuMaster {
 	
 	public static ArrayList<Score> sort(ArrayList<Score> scores)
 	{
-	        Score temp;
-	        for (int i = 1; i < scores.size(); ++i) 
-	        {
-	            for(int j = i ; j > 0 ; --j)
-	            {
-	                if(scores.get(j).getScore()> scores.get(j-1).getScore()){
-	                    temp = scores.get(j);
-	                    scores.set(j,scores.get(j-1));
-	                    scores.set(j-1, temp);
-	                }
-	            }
-	        }			
+        Score temp;
+        for (int i = 1; i < scores.size(); ++i) 
+        {
+            for(int j = i ; j > 0 ; --j)
+            {
+                if(scores.get(j).getScore()> scores.get(j-1).getScore()){
+                    temp = scores.get(j);
+                    scores.set(j,scores.get(j-1));
+                    scores.set(j-1, temp);
+                }
+            }
+        }			
 		return scores;
 	}
 	
@@ -280,7 +276,7 @@ public class SudokuMaster {
 		Complete.setText("You Win!!");
 		if(Complete.getText().equals("You Win!!"));
 		{
-			task.cancel();
+			haveWon = true;
 			user.editableProperty().set(true);
 			user.setOpacity(100);
 		}
