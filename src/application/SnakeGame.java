@@ -1,5 +1,8 @@
 package application;
 
+import com.sun.javafx.scene.traversal.Direction;
+
+import enums.Directions;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -8,13 +11,14 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.effect.DropShadow;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
-import models.SnakeBoard;
 import models.Snake;
+import models.SnakeBoard;
 
 public class SnakeGame extends Application{
 	
@@ -22,7 +26,7 @@ public class SnakeGame extends Application{
 	int score = 0;
 	Snake snake = new Snake();
 	SnakeBoard board = new SnakeBoard(snake);
-	boolean goUp, goRight, goDown, goLeft;
+	Directions direction;
 	BorderPane layout;
 	AnimationTimer timer;
 	
@@ -40,69 +44,69 @@ public class SnakeGame extends Application{
 		layout.setCenter(board.getBoard());
 		Scene scene = new Scene(layout);
 		scene.setOnKeyPressed(e -> {
-			switch(e.getCode()){
-			case W:
-				if(goDown != true){
-					goUp = true;
-					goLeft = false;
-					goDown = false;
-					goRight = false;
-				}
-				break;
-			case A:
-				if(goRight != true){
-					goLeft = true;
-					goDown = false;
-					goRight = false;
-					goUp = false;
-				}
-				break;
-			case D:
-				if(goLeft != true){
-					goRight  = true;
-					goLeft = false;
-					goDown = false;
-					goUp = false;
-				}
-				break;	
-			case S:
-				if(goUp != true){
-					goDown = true;
-					goLeft = false;
-					goUp = false;
-					goRight = false;
-				}
-				break;
+			if(e.getCode() == KeyCode.W && direction != Directions.DOWN){
+				direction = Directions.UP;
 			}
+			if(e.getCode() == KeyCode.S && direction != Directions.UP){
+				direction = Directions.DOWN;	
+			}
+			if(e.getCode() == KeyCode.A && direction != Directions.RIGHT){
+				direction = Directions.LEFT;
+			}
+			if(e.getCode() == KeyCode.D && direction != Directions.LEFT){
+				direction = Directions.RIGHT;
+			}
+//			switch(e.getCode()){
+//			case W:
+//				if(goDown != true){
+//					goUp = true;
+//					goLeft = false;
+//					goRight = false;
+//				}
+//				break;
+//			case A:
+//				if(goRight != true){
+//					goLeft = true;
+//					goDown = false;
+//					goUp = false;
+//				}
+//				break;
+//			case D:
+//				if(goLeft != true){
+//					goRight  = true;
+//					goDown = false;
+//					goUp = false;
+//				}
+//				break;	
+//			case S:
+//				if(goUp != true){
+//					goDown = true;
+//					goLeft = false;
+//					goRight = false;
+//				}
+//				break;
+//			}
 		});
 		scene.setOnKeyReleased(e -> {
 			switch(e.getCode()){
 			case W:
-				if(goUp = true){
+				if(direction == Directions.UP){
 					
-				}else{
-					goUp = false;
 				}
 				break;
 			case A:
-				if(goLeft = true){
+				if(direction == Directions.LEFT){
 					
-				}else{
-					goLeft = false;
 				}
 				break;
 			case S:
-				if(goDown = true){
+				if(direction == Directions.DOWN){
 					
-				}else{
-					goDown = false;
 				}
 				break;
 			case D:
-				if(goRight  = true){
+				if(direction == Directions.RIGHT){
 					
-				}else{
-					goRight = false;
 				}
 				break;
 			}
@@ -118,9 +122,8 @@ public class SnakeGame extends Application{
 				}
 				int dx = 0;
 				int dy = 0;
-				if(goUp){
+				if(direction == Directions.UP){
 					dy-=10;
-					dx = 0;
 					snake.moveSnake(dx, dy);
 					if(board.didSnakeHitWall()){
 						displayLoss();
@@ -137,9 +140,8 @@ public class SnakeGame extends Application{
 						displayLoss();
 					}
 				}
-				if(goRight){
+				if(direction == Directions.RIGHT){
 					dx+=10;
-					dy = 0;
 					snake.moveSnake(dx, dy);
 					if(board.didSnakeHitWall()){
 						displayLoss();
@@ -156,9 +158,8 @@ public class SnakeGame extends Application{
 						displayLoss();
 					}
 				}
-				if(goDown){
+				if(direction == Directions.DOWN){
 					dy+=10;
-					dx = 0;
 					snake.moveSnake(dx, dy);
 					if(board.didSnakeHitWall()){
 						displayLoss();
@@ -175,9 +176,8 @@ public class SnakeGame extends Application{
 						displayLoss();
 					}
 				}
-				if(goLeft){
+				if(direction == Directions.LEFT){
 					dx-=10;
-					dy = 0;
 					snake.moveSnake(dx, dy);
 					if(board.didSnakeHitWall()){
 						displayLoss();
