@@ -68,7 +68,7 @@ public class SudokuMaster {
 	
 	public void mainMenu()
 	{
-		//TODO main menu stuff
+		//TODO main menu stuffSS
 		haveWon = true;
 		MainMenu menu = new MainMenu();
 	
@@ -76,7 +76,7 @@ public class SudokuMaster {
 			menu.start(new Stage());
 		} catch (Exception e1) {
 			
-		}	this.mainMenu();
+		}
 		
 	}
 	
