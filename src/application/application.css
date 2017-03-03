@@ -28,23 +28,23 @@ Label{
 	-fx-background-color: #fff;
 	-fx-border-color: #000;
 	-fx-border-style: solid;
-	-fx-pref-height:10px;
-	-fx-max-height: 10px; 
-	-fx-padding: 0px;
+	-fx-pref-height:20px;
+	-fx-max-height: 20px; 
+	-fx-padding: 2px;
 }
 
 #tes{
 	-fx-border-style: solid;
--fx-border-color: #000;
--fx-border-width: 1px;
--fx-pref-width: 130px;
--fx-max-width: 130px;
--fx-max-height: 20px;
--fx-pref-height: 20px;
--fx-scale-x:1;
--fx-scale-y:1;
--fx-translate-x: 0px;
--fx-padding: 0.0px,0.0px,0.0px,100.0%;
+	-fx-border-color: #000;
+	-fx-border-width: 1px;
+	-fx-pref-width: 130px;
+	-fx-max-width: 130px;
+	-fx-max-height: 20px;
+	-fx-pref-height: 20px;
+	-fx-scale-x:1;
+	-fx-scale-y:1;
+	-fx-translate-x: 0px;
+	-fx-padding: 0.0px,0.0px,0.0px,100.0%;
 }
 
 #userScoreInput{

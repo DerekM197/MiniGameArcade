@@ -6,10 +6,12 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Random;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
+import javafx.stage.Stage;
 import models.Score;
 
 public class SudokuMaster {
@@ -41,27 +43,40 @@ public class SudokuMaster {
 		sort(score2);
 		switch(score2.size()){		
 			case(3) :{
-				String lowScore = score2.get(score2.size()-1).toString();
-				System.out.println(lowScore.length() + lowScore);
-				System.out.println(lowScore.substring(0,lowScore.length()-5));
-				lowScore  = lowScore.substring(0,lowScore.length()-5);
-				LowScore3.setText(lowScore);
+				String lowScore = score2.get(score2.size()-3).toString();
+				LowScore3.setText(lowScore.substring(0,lowScore.length()-2));
 			}
 			case(2): {
-				String lowScore = score2.get(score2.size()-1).toString();
-				LowScore2.setText(lowScore.substring(0,lowScore.length()-5));
+				String lowScore = score2.get(score2.size()-2).toString();
+				LowScore2.setText(lowScore.substring(0,lowScore.length()-2));
 			}
 			case(1): {
 				String lowScore = score2.get(score2.size()-1).toString();
-				LowScore1.setText(lowScore.substring(0,lowScore.length()-5));
+				LowScore1.setText(lowScore.substring(0,lowScore.length()-2));
+				break;
 			}
 			default:{
-				LowScore1.setText(score2.get(score2.size()-1).toString());
-				LowScore2.setText(score2.get(score2.size()-2).toString());
-				LowScore3.setText(score2.get(score2.size()-3).toString());
+				String lowScore = score2.get(score2.size()-1).toString();
+				LowScore1.setText(lowScore.substring(0,lowScore.length()-2));
+					lowScore = score2.get(score2.size()-2).toString();
+				LowScore2.setText(lowScore.substring(0,lowScore.length()-2));
+					lowScore = score2.get(score2.size()-3).toString();
+				LowScore3.setText(lowScore.substring(0,lowScore.length()-2));
 			}
-		}
-		
+		}	
+	}
+	
+	public void mainMenu()
+	{
+		//TODO main menu stuff
+		haveWon = true;
+		MainMenu menu = new MainMenu();
+	
+		try {
+			menu.start(new Stage());
+		} catch (Exception e1) {
+			
+		}	this.mainMenu();
 		
 	}
 	
@@ -69,6 +84,7 @@ public class SudokuMaster {
 		Boxes = MainBox.getChildren().toArray(new GridPane[0]);
 		TextBoard = getBoard();
 		th.start();
+		generateSquareBoard();
 		updateScoreList(readScores());
 	}
 	
@@ -98,11 +114,13 @@ public class SudokuMaster {
 	
 	public void scoreProcess()
 	{
-		ArrayList<Score> score = readScores();
-		score.add(addNewScore());
-		score = sort(score);
-		updateScoreList(score);
-		saveScores(score);
+		if(user.isEditable()){
+			ArrayList<Score> score = readScores();
+			score.add(addNewScore());
+			score = sort(score);
+			updateScoreList(score);
+			saveScores(score);
+		}
 	}
 	
 	private static ArrayList<Score> sort(ArrayList<Score> scores)
