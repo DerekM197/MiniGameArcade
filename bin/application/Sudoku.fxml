@@ -240,14 +240,14 @@
          <children>
             <Button fx:id="check" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#checkBoard" prefHeight="25.0" prefWidth="130.0" text="Check for completion" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
             <Button fx:id="NewGame" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#generateSquareBoard" prefHeight="25.0" prefWidth="130.0" text="Start new game" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
-            <TextField id="tes" fx:id="Complete" editable="false" onKeyReleased="#testing" prefHeight="22.0" prefWidth="100.0" promptText="false" text="Not Complete" GridPane.rowIndex="1">
+            <TextField id="tes" fx:id="Complete" editable="false" maxWidth="130.0" onKeyReleased="#testing" prefHeight="22.0" prefWidth="130.0" promptText="false" text="Not Complete" GridPane.rowIndex="1">
                <GridPane.margin>
                   <Insets left="10.0" />
                </GridPane.margin>
                <padding>
                   <Insets bottom="2.0" left="2.0" right="2.0" />
                </padding></TextField>
-            <TextField id="tes" fx:id="Completion" editable="false" onKeyReleased="#testing" prefHeight="22.0" prefWidth="100.0" promptText="Completion" text="Completion">
+            <TextField id="tes" fx:id="Completion" editable="false" maxWidth="130.0" onKeyReleased="#testing" prefHeight="22.0" prefWidth="130.0" promptText="Completion" text="Completion">
                <GridPane.margin>
                   <Insets left="10.0" />
                </GridPane.margin>
@@ -267,14 +267,14 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <TextField id="tes" fx:id="timer" editable="false" prefHeight="22.0" prefWidth="100.0" promptText="Time: " text="Time: " GridPane.rowIndex="2">
+            <TextField id="tes" fx:id="timer" editable="false" maxWidth="130.0" prefHeight="22.0" prefWidth="130.0" promptText="Time: " text="Time: " GridPane.rowIndex="1">
                <GridPane.margin>
                   <Insets left="10.0" />
                </GridPane.margin>
                <padding>
                   <Insets bottom="2.0" left="2.0" right="2.0" />
                </padding></TextField>
-            <TextField id="tes" fx:id="score" editable="false" prefHeight="22.0" prefWidth="100.0" text="Score: " GridPane.rowIndex="3">
+            <TextField id="tes" fx:id="score" editable="false" maxWidth="130.0" prefHeight="22.0" prefWidth="130.0" text="Score: " GridPane.rowIndex="2">
                <GridPane.margin>
                   <Insets left="10.0" />
                </GridPane.margin>
@@ -282,7 +282,15 @@
                   <Insets bottom="2.0" left="2.0" right="2.0" />
                </padding>
             </TextField>
-            <TextField id="userScoreInput" fx:id="user" editable="false" onAction="#scoreProcess" opacity="0.0" promptText="Enter your name here" />
+            <TextField id="userScoreInput" fx:id="user" editable="false" onAction="#scoreProcess" opacity="0.0" promptText="Enter your name here">
+               <GridPane.margin>
+                  <Insets left="10.0" />
+               </GridPane.margin></TextField>
+            <Button fx:id="MainMenu" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#mainMenu" prefHeight="25.0" prefWidth="130.0" text="Main Menu" GridPane.rowIndex="3">
+               <GridPane.margin>
+                  <Insets left="10.0" />
+               </GridPane.margin>
+            </Button>
          </children>
       </GridPane>
       <GridPane prefHeight="150.0" prefWidth="150.0" GridPane.columnIndex="3">
@@ -296,12 +304,15 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="22.0" prefWidth="62.0" text="Low Scores">
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="22.0" prefWidth="66.0" text="Low Scores">
                <GridPane.margin>
                   <Insets left="44.0" />
                </GridPane.margin>
+               <padding>
+                  <Insets left="2.0" right="2.0" />
+               </padding>
             </Label>
-            <Label prefHeight="30.0" prefWidth="130.0" text="Label" GridPane.rowIndex="1">
+            <Label fx:id="LowScore1" maxHeight="10.0" minWidth="0.0" prefHeight="2.0" prefWidth="130.0" text="Label" GridPane.rowIndex="1">
                <GridPane.margin>
                   <Insets left="10.0" />
                </GridPane.margin>
@@ -309,7 +320,7 @@
                   <Insets left="2.0" />
                </padding>
             </Label>
-            <Label prefHeight="30.0" prefWidth="130.0" text="Label" GridPane.rowIndex="2">
+            <Label fx:id="LowScore2" maxHeight="10.0" minWidth="0.0" prefHeight="2.0" prefWidth="130.0" text="Label" GridPane.rowIndex="2">
                <GridPane.margin>
                   <Insets left="10.0" />
                </GridPane.margin>
@@ -317,7 +328,7 @@
                   <Insets left="2.0" />
                </padding>
             </Label>
-            <Label prefHeight="30.0" prefWidth="130.0" text="Label" GridPane.rowIndex="3">
+            <Label fx:id="LowScore3" maxHeight="10.0" minWidth="0.0" prefHeight="2.0" prefWidth="130.0" text="Label" GridPane.rowIndex="3">
                <GridPane.margin>
                   <Insets left="10.0" />
                </GridPane.margin>
