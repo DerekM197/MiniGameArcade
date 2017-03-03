@@ -38,40 +38,11 @@ public class SudokuMaster {
 	private int multi = 1;
 	private int time = 0;
 	
-	private void updateScoreList(ArrayList<Score> score2)
-	{
-		sort(score2);
-		switch(score2.size()){		
-			case(3) :{
-				String lowScore = score2.get(score2.size()-3).toString();
-				LowScore3.setText(lowScore.substring(0,lowScore.length()-2));
-			}
-			case(2): {
-				String lowScore = score2.get(score2.size()-2).toString();
-				LowScore2.setText(lowScore.substring(0,lowScore.length()-2));
-			}
-			case(1): {
-				String lowScore = score2.get(score2.size()-1).toString();
-				LowScore1.setText(lowScore.substring(0,lowScore.length()-2));
-				break;
-			}
-			default:{
-				String lowScore = score2.get(score2.size()-1).toString();
-				LowScore1.setText(lowScore.substring(0,lowScore.length()-2));
-					lowScore = score2.get(score2.size()-2).toString();
-				LowScore2.setText(lowScore.substring(0,lowScore.length()-2));
-					lowScore = score2.get(score2.size()-3).toString();
-				LowScore3.setText(lowScore.substring(0,lowScore.length()-2));
-			}
-		}	
-	}
-	
 	public void mainMenu()
 	{
 		//TODO main menu stuffSS
 		haveWon = true;
-		MainMenu menu = new MainMenu();
-	
+		MainMenu menu = new MainMenu();	
 		try {
 			menu.start(new Stage());
 		} catch (Exception e1) {
@@ -104,6 +75,34 @@ public class SudokuMaster {
 			}
 		}
 	};
+
+	private void updateScoreList(ArrayList<Score> score2)
+	{
+		sort(score2);
+		switch(score2.size()){		
+			case(3) :{
+				String lowScore = score2.get(score2.size()-3).toString();
+				LowScore3.setText(lowScore.substring(0,lowScore.length()-2));
+			}
+			case(2): {
+				String lowScore = score2.get(score2.size()-2).toString();
+				LowScore2.setText(lowScore.substring(0,lowScore.length()-2));
+			}
+			case(1): {
+				String lowScore = score2.get(score2.size()-1).toString();
+				LowScore1.setText(lowScore.substring(0,lowScore.length()-2));
+				break;
+			}
+			default:{
+				String lowScore = score2.get(score2.size()-1).toString();
+				LowScore1.setText(lowScore.substring(0,lowScore.length()-2));
+					lowScore = score2.get(score2.size()-2).toString();
+				LowScore2.setText(lowScore.substring(0,lowScore.length()-2));
+					lowScore = score2.get(score2.size()-3).toString();
+				LowScore3.setText(lowScore.substring(0,lowScore.length()-2));
+			}
+		}	
+	}
 	
 	private Score addNewScore()
 	{
@@ -275,58 +274,6 @@ public class SudokuMaster {
 		}
 	}
 	
-	private TextField[][] getRows()
-	{
-		TextField[][] rows = new TextField[9][9];
-		GridPane[] boxe =  MainBox.getChildren().toArray(new GridPane[0]);
-		for(int i =0,r=0;i<9;++i,r+=3)
-		{
-			for(int j = 0,k=0;j<9;++k)
-			{
-				if(i!=0&&i>5&&k==0)
-				{
-					k+=6;
-				}else if(i!=0&&i>2&&k==0)
-				{
-					k+=3;
-				}
-				TextField[] hi = boxe[k].getChildren().toArray(new TextField[0]);
-				for(int p = 0;p<3;++p,++j)
-				{
-					rows[i][j] = hi[p+r];	
-				}
-			}
-			if(r==6)
-			{			
-				r=-3;
-			}
-		}
-		return rows;
-	}
-		
-	private TextField[][] getColumns() {
-		TextField[][] columns = new TextField[9][9];
-		GridPane[] boxe =  MainBox.getChildren().toArray(new GridPane[0]);
-		for(int i =0,r=0;i<9;++i,r+=3){
-			for(int j = 0,k=0;j<9;++k){
-				if(i!=0&&i>5&&k==0){
-					k+=6;
-				}else if(i!=0&&i>2&&k==0){
-					k+=3;
-				}
-				TextField[] hi = boxe[k].getChildren().toArray(new TextField[0]);
-				for(int p = 0;p<3;++p,++j){
-					columns[j][i] = hi[p+r];
-				
-				}
-			}
-			if(r==6){
-				r=-3;
-			}
-		}
-		return columns;
-	}
-	
 	public void checkBoard()
 	{
 		Complete.setText(checkFullBoard()? "You Win!!" : "Not Complete");	
@@ -417,6 +364,58 @@ public class SudokuMaster {
 			multi+=0.1;
 		}
 		return valid;
+	}
+
+	private TextField[][] getRows()
+	{
+		TextField[][] rows = new TextField[9][9];
+		GridPane[] boxe =  MainBox.getChildren().toArray(new GridPane[0]);
+		for(int i =0,r=0;i<9;++i,r+=3)
+		{
+			for(int j = 0,k=0;j<9;++k)
+			{
+				if(i!=0&&i>5&&k==0)
+				{
+					k+=6;
+				}else if(i!=0&&i>2&&k==0)
+				{
+					k+=3;
+				}
+				TextField[] hi = boxe[k].getChildren().toArray(new TextField[0]);
+				for(int p = 0;p<3;++p,++j)
+				{
+					rows[i][j] = hi[p+r];	
+				}
+			}
+			if(r==6)
+			{			
+				r=-3;
+			}
+		}
+		return rows;
+	}
+		
+	private TextField[][] getColumns() {
+		TextField[][] columns = new TextField[9][9];
+		GridPane[] boxe =  MainBox.getChildren().toArray(new GridPane[0]);
+		for(int i =0,r=0;i<9;++i,r+=3){
+			for(int j = 0,k=0;j<9;++k){
+				if(i!=0&&i>5&&k==0){
+					k+=6;
+				}else if(i!=0&&i>2&&k==0){
+					k+=3;
+				}
+				TextField[] hi = boxe[k].getChildren().toArray(new TextField[0]);
+				for(int p = 0;p<3;++p,++j){
+					columns[j][i] = hi[p+r];
+				
+				}
+			}
+			if(r==6){
+				r=-3;
+			}
+		}
+		return columns;
 	}
 }
 
