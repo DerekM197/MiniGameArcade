@@ -125,19 +125,7 @@ public class MinesweeperMain extends Application {
 			}
 		}
 		mineField.setCenter(grid);
-		// ti = new Timer();
-		// TimerTask task = new TimerTask()
-		// {
-		// @Override
-		// public void run() {
-		// ++time;
-		//
-		// timer.setText("Time in seconds: "+time);
-		//
-		// }
-		// };
-		// ti.scheduleAtFixedRate(task, 1000, 1000);
-		// mineField.setBottom(timer);
+		
 		board.settingMines(numOfMines);
 		board.settingNeighbors();
 		return mineField;
