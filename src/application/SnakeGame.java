@@ -1,7 +1,5 @@
 package application;
 
-import com.sun.javafx.scene.traversal.Direction;
-
 import enums.Directions;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
@@ -55,6 +53,20 @@ public class SnakeGame extends Application{
 			}
 			if(e.getCode() == KeyCode.D && direction != Directions.LEFT){
 				direction = Directions.RIGHT;
+			}
+			if(e.getCode() == KeyCode.ESCAPE){
+				timer.stop();
+				SnakePause.display("P A U S E D", "The game is paused");
+				if(SnakePause.getResume()){
+					timer.start();
+				}else{
+					SnakeMenu menu = new SnakeMenu();
+					try {
+						menu.start(window);
+					} catch (Exception e1) {
+			
+					}
+				}
 			}
 //			switch(e.getCode()){
 //			case W:
@@ -204,7 +216,7 @@ public class SnakeGame extends Application{
 
 	public void displayLoss(){
 		timer.stop();
-		Label lose = new Label("You have lost");
+		Label lose = new Label("Game Over");
 		lose.setFont(Font.font("Berlin Sans FB", 24));
 		lose.setTextFill(Paint.valueOf("#FFFFFF"));
 		Button menuButton = new Button("Exit to Snake Menu");
