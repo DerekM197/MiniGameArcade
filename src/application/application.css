@@ -28,6 +28,9 @@ Label{
 	-fx-background-color: #fff;
 	-fx-border-color: #000;
 	-fx-border-style: solid;
+	-fx-pref-height:10px;
+	-fx-max-height: 10px; 
+	-fx-padding: 0px;
 }
 
 #tes{

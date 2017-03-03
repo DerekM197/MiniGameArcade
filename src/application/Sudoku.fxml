@@ -282,7 +282,10 @@
                   <Insets bottom="2.0" left="2.0" right="2.0" />
                </padding>
             </TextField>
-            <TextField id="userScoreInput" fx:id="user" editable="false" onAction="#scoreProcess" opacity="0.0" promptText="Enter your name here" />
+            <TextField id="userScoreInput" fx:id="user" editable="false" onAction="#scoreProcess" opacity="0.0" promptText="Enter your name here">
+               <GridPane.margin>
+                  <Insets left="10.0" />
+               </GridPane.margin></TextField>
          </children>
       </GridPane>
       <GridPane prefHeight="150.0" prefWidth="150.0" GridPane.columnIndex="3">
@@ -301,7 +304,7 @@
                   <Insets left="44.0" />
                </GridPane.margin>
             </Label>
-            <Label prefHeight="30.0" prefWidth="130.0" text="Label" GridPane.rowIndex="1">
+            <Label fx:id="LowScore1" prefHeight="20.0" prefWidth="130.0" text="Label" GridPane.rowIndex="1">
                <GridPane.margin>
                   <Insets left="10.0" />
                </GridPane.margin>
@@ -309,7 +312,7 @@
                   <Insets left="2.0" />
                </padding>
             </Label>
-            <Label prefHeight="30.0" prefWidth="130.0" text="Label" GridPane.rowIndex="2">
+            <Label fx:id="LowScore2" prefHeight="20.0" prefWidth="130.0" text="Label" GridPane.rowIndex="2">
                <GridPane.margin>
                   <Insets left="10.0" />
                </GridPane.margin>
@@ -317,7 +320,7 @@
                   <Insets left="2.0" />
                </padding>
             </Label>
-            <Label prefHeight="30.0" prefWidth="130.0" text="Label" GridPane.rowIndex="3">
+            <Label fx:id="LowScore3" prefHeight="20.0" prefWidth="130.0" text="Label" GridPane.rowIndex="3">
                <GridPane.margin>
                   <Insets left="10.0" />
                </GridPane.margin>

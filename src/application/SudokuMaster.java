@@ -7,6 +7,7 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Random;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import models.Score;
@@ -23,17 +24,52 @@ public class SudokuMaster {
 	private TextField score;
 	@FXML
 	private TextField user;
+	@FXML
+	private Label LowScore1;
+	@FXML
+	private Label LowScore2;	
+	@FXML
+	private Label LowScore3;
 	private GridPane[] Boxes;
 	private TextField[][] TextBoard;
-	boolean haveWon = false;
+	private boolean haveWon = false;
 	private int multi = 1;
-	int time = 0;
+	private int time = 0;
 	
+	private void updateScoreList(ArrayList<Score> score2)
+	{
+		sort(score2);
+		switch(score2.size()){		
+			case(3) :{
+				String lowScore = score2.get(score2.size()-1).toString();
+				System.out.println(lowScore.length() + lowScore);
+				System.out.println(lowScore.substring(0,lowScore.length()-5));
+				lowScore  = lowScore.substring(0,lowScore.length()-5);
+				LowScore3.setText(lowScore);
+			}
+			case(2): {
+				String lowScore = score2.get(score2.size()-1).toString();
+				LowScore2.setText(lowScore.substring(0,lowScore.length()-5));
+			}
+			case(1): {
+				String lowScore = score2.get(score2.size()-1).toString();
+				LowScore1.setText(lowScore.substring(0,lowScore.length()-5));
+			}
+			default:{
+				LowScore1.setText(score2.get(score2.size()-1).toString());
+				LowScore2.setText(score2.get(score2.size()-2).toString());
+				LowScore3.setText(score2.get(score2.size()-3).toString());
+			}
+		}
+		
+		
+	}
 	
 	public void initialize(){
 		Boxes = MainBox.getChildren().toArray(new GridPane[0]);
 		TextBoard = getBoard();
 		th.start();
+		updateScoreList(readScores());
 	}
 	
 	Thread th = new Thread(){
@@ -43,6 +79,7 @@ public class SudokuMaster {
 				++time;
 				timer.setText("Time: "+time);
 				score.setText("Score: "+(time*multi));
+				System.out.println(time);
 				try {
 					th.sleep(1000);
 				} catch (InterruptedException e) {
@@ -64,10 +101,11 @@ public class SudokuMaster {
 		ArrayList<Score> score = readScores();
 		score.add(addNewScore());
 		score = sort(score);
+		updateScoreList(score);
 		saveScores(score);
 	}
 	
-	public static ArrayList<Score> sort(ArrayList<Score> scores)
+	private static ArrayList<Score> sort(ArrayList<Score> scores)
 	{
         Score temp;
         for (int i = 1; i < scores.size(); ++i) 
@@ -199,6 +237,7 @@ public class SudokuMaster {
 	
 	public void generateSquareBoard()
 	{
+		haveWon = false;
 		time = 0;
 		clearBoard();
 		ArrayList<Integer> numbs = new ArrayList<>(10);
