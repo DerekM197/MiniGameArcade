@@ -15,6 +15,8 @@ import javafx.stage.Stage;
 import models.Score;
 
 public class SudokuMaster {
+	@FXML
+	private Stage window;
 	
 	@FXML
 	private GridPane MainBox;
@@ -37,14 +39,15 @@ public class SudokuMaster {
 	private boolean haveWon = false;
 	private int multi = 1;
 	private int time = 0;
+	private boolean firstRun = true;
 	
 	public void mainMenu()
 	{
-		//TODO main menu stuffSS
 		haveWon = true;
 		MainMenu menu = new MainMenu();	
 		try {
 			menu.start(new Stage());
+			window.close();
 		} catch (Exception e1) {
 			
 		}
@@ -54,19 +57,20 @@ public class SudokuMaster {
 	public void initialize(){
 		Boxes = MainBox.getChildren().toArray(new GridPane[0]);
 		TextBoard = getBoard();
-		th.start();
 		generateSquareBoard();
 		updateScoreList(readScores());
+		th.start();
 	}
 	
 	Thread th = new Thread(){
 		public void run(){
-			while(!haveWon)
+			System.out.println("here");
+			while(true)
 			{
-				++time;
-				timer.setText("Time: "+time);
-				score.setText("Score: "+(time*multi));
-				System.out.println(time);
+				if(!haveWon)
+				{
+					update();
+				}
 				try {
 					th.sleep(1000);
 				} catch (InterruptedException e) {
@@ -74,40 +78,55 @@ public class SudokuMaster {
 				}
 			}
 		}
+		
+		private void update()
+		{
+			++time;
+			timer.setText("Time: "+time);
+			score.setText("Score: "+(time*multi));
+			System.out.println(time);
+		}
 	};
-
+		
 	private void updateScoreList(ArrayList<Score> score2)
 	{
 		sort(score2);
-		switch(score2.size()){		
+		switch(score2.size()){	
 			case(3) :{
 				String lowScore = score2.get(score2.size()-3).toString();
-				LowScore3.setText(lowScore.substring(0,lowScore.length()-2));
+				LowScore3.setText(lowScore);
 			}
 			case(2): {
 				String lowScore = score2.get(score2.size()-2).toString();
-				LowScore2.setText(lowScore.substring(0,lowScore.length()-2));
+				LowScore2.setText(lowScore);
 			}
 			case(1): {
 				String lowScore = score2.get(score2.size()-1).toString();
-				LowScore1.setText(lowScore.substring(0,lowScore.length()-2));
+				LowScore1.setText(lowScore);
+				break;
+			}
+			case(0): {
 				break;
 			}
 			default:{
 				String lowScore = score2.get(score2.size()-1).toString();
-				LowScore1.setText(lowScore.substring(0,lowScore.length()-2));
+				LowScore1.setText(lowScore);
 					lowScore = score2.get(score2.size()-2).toString();
-				LowScore2.setText(lowScore.substring(0,lowScore.length()-2));
+				LowScore2.setText(lowScore);
 					lowScore = score2.get(score2.size()-3).toString();
-				LowScore3.setText(lowScore.substring(0,lowScore.length()-2));
+				LowScore3.setText(lowScore);
 			}
 		}	
 	}
 	
 	private Score addNewScore()
 	{
+		user.requestFocus();
 		int score = time*multi;
 		String name = user.getText();
+		user.editableProperty().set(false);
+		user.setOpacity(0);
+		
 		return new Score(name,score);
 	}
 	
@@ -154,9 +173,10 @@ public class SudokuMaster {
 	{
 		ArrayList<Score> scores = new ArrayList<>(10);
 		String[] arrScoreSting= getScoreString().split("\n");
-		if(arrScoreSting.length >0)
+		if(arrScoreSting.length >0 && arrScoreSting[0].length()>0)
 		{
 			System.out.println("reading scores");
+			
 			for(int i = 0;i<arrScoreSting.length;++i)
 			{
 				String[] param = arrScoreSting[i].split(" : ");
@@ -253,14 +273,14 @@ public class SudokuMaster {
 	}
 	
 	public void generateSquareBoard()
-	{
-		haveWon = false;
+	{	
 		time = 0;
+		haveWon = false;
 		clearBoard();
 		ArrayList<Integer> numbs = new ArrayList<>(10);
 		for(int i = 1;i<10;++i)
 		{
-			System.out.println(i);
+			//ystem.out.println(i);
 			numbs.add(i);
 		}
 		Random randy = new Random();
@@ -273,6 +293,7 @@ public class SudokuMaster {
 			arr[4].editableProperty().set(false);	
 		}
 	}
+	
 	
 	public void checkBoard()
 	{
@@ -321,7 +342,7 @@ public class SudokuMaster {
 				}
 			}
 		}
-		System.out.println("Valid: "+valid);
+		//System.out.println("Valid: "+valid);
 		return valid;
 	}
 	
@@ -340,7 +361,7 @@ public class SudokuMaster {
 			input = Integer.parseInt(arr[i].getText());
 			}catch(NumberFormatException nfe){
 				multi+=0.1;
-				System.out.println("NumberFormatException");
+				//System.out.println("NumberFormatException");
 				return false;
 			}
 			for(int j = 0;j<ints.size();++j)

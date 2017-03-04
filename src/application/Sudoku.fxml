@@ -312,7 +312,7 @@
                   <Insets left="2.0" right="2.0" />
                </padding>
             </Label>
-            <Label fx:id="LowScore1" maxHeight="10.0" minWidth="0.0" prefHeight="2.0" prefWidth="130.0" text="Label" GridPane.rowIndex="1">
+            <Label fx:id="LowScore1" maxHeight="10.0" minWidth="0.0" prefHeight="2.0" prefWidth="130.0" GridPane.rowIndex="1">
                <GridPane.margin>
                   <Insets left="10.0" />
                </GridPane.margin>
@@ -320,7 +320,7 @@
                   <Insets left="2.0" />
                </padding>
             </Label>
-            <Label fx:id="LowScore2" maxHeight="10.0" minWidth="0.0" prefHeight="2.0" prefWidth="130.0" text="Label" GridPane.rowIndex="2">
+            <Label fx:id="LowScore2" maxHeight="10.0" minWidth="0.0" prefHeight="2.0" prefWidth="130.0" GridPane.rowIndex="2">
                <GridPane.margin>
                   <Insets left="10.0" />
                </GridPane.margin>
@@ -328,7 +328,7 @@
                   <Insets left="2.0" />
                </padding>
             </Label>
-            <Label fx:id="LowScore3" maxHeight="10.0" minWidth="0.0" prefHeight="2.0" prefWidth="130.0" text="Label" GridPane.rowIndex="3">
+            <Label fx:id="LowScore3" maxHeight="10.0" minWidth="0.0" prefHeight="2.0" prefWidth="130.0" GridPane.rowIndex="3">
                <GridPane.margin>
                   <Insets left="10.0" />
                </GridPane.margin>
