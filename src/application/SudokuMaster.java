@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
@@ -34,22 +35,25 @@ public class SudokuMaster {
 	private Label LowScore2;	
 	@FXML
 	private Label LowScore3;
+	@FXML
+	private Button MainMenu;
 	private GridPane[] Boxes;
 	private TextField[][] TextBoard;
 	private boolean haveWon = false;
 	private int multi = 1;
 	private int time = 0;
-	private boolean firstRun = true;
+	private boolean onTimer = true;
 	
 	public void mainMenu()
 	{
 		haveWon = true;
+		onTimer = false;
 		MainMenu menu = new MainMenu();	
 		try {
-			menu.start(new Stage());
-			window.close();
+			Stage stage = (Stage)MainMenu.getScene().getWindow();
+			menu.start(stage);
 		} catch (Exception e1) {
-			
+			e1.printStackTrace();
 		}
 		
 	}
@@ -64,8 +68,7 @@ public class SudokuMaster {
 	
 	Thread th = new Thread(){
 		public void run(){
-			System.out.println("here");
-			while(true)
+			while(onTimer)
 			{
 				if(!haveWon)
 				{
@@ -165,7 +168,6 @@ public class SudokuMaster {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		System.out.println("not loaded correctly");
 		return new String("error");
 	}
 	
@@ -175,7 +177,6 @@ public class SudokuMaster {
 		String[] arrScoreSting= getScoreString().split("\n");
 		if(arrScoreSting.length >0 && arrScoreSting[0].length()>0)
 		{
-			System.out.println("reading scores");
 			
 			for(int i = 0;i<arrScoreSting.length;++i)
 			{
@@ -200,9 +201,7 @@ public class SudokuMaster {
 			fi.close();
 		} catch (IOException e) {
 			e.printStackTrace();
-			System.out.println("scores not saved");
 		}
-		System.out.println("scores saved");
 	}
 	
 	public void testing(){
@@ -342,7 +341,6 @@ public class SudokuMaster {
 				}
 			}
 		}
-		//System.out.println("Valid: "+valid);
 		return valid;
 	}
 	

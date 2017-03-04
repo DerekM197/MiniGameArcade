@@ -10,6 +10,8 @@ import javafx.stage.Stage;
 
 
 public class SudokuMain extends Application{
+	
+	
 	@Override
 	public void start(Stage primaryStage) {
 			try {
