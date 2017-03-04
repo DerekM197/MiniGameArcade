@@ -7,24 +7,26 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.paint.Paint;
-import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
-public class MasterMindMain extends Application{
-	
+public class MasterMindMain extends Application {
+
 	private int colSize = 4;
 	private int rowSize = 10;
 	private int answerSize;
-	
-//	public MasterMindMain(int colSize, int rowSize){
-//		setColSize(colSize);
-//		setRowSize(rowSize);
-//		setAnswerSize(colSize);
-//	}
-	
+
+	// public MasterMindMain(int colSize, int rowSize){
+	// setColSize(colSize);
+	// setRowSize(rowSize);
+	// setAnswerSize(colSize);
+	// }
+
 	public int getColSize() {
 		return colSize;
 	}
@@ -49,13 +51,24 @@ public class MasterMindMain extends Application{
 		this.answerSize = answerSize;
 	}
 
-	public BorderPane createContent() throws IOException{
-		BorderPane screen =  FXMLLoader.load(getClass().getResource("MasterMindMainGUI.fxml"));
+	public BorderPane createContent() throws IOException {
+		BorderPane screen = FXMLLoader.load(getClass().getResource("MasterMindMainGUI.fxml"));
 		GridPane board = new GridPane();
+		GridPane rightOrWrong = new GridPane();
 		board.gridLinesVisibleProperty().set(true);
-		for(int	row = 0; row < rowSize; row++){
-			for(int col = 0; col < colSize; col++){
-				board
+		for (int row = 0; row < rowSize; row++) {
+			for (int col = 0; col < colSize; col++) {
+				TextField cell = new TextField();
+				cell.setPrefWidth(30);
+				cell.setPrefHeight(30);
+				board.add(cell, col, row);
+				Label lab = new Label();
+				lab.setStyle(value);
+			}
+		}
+		for(int row = 0; row < rowSize; row++){
+			for(int col = 0; col < 2; col++){
+				
 			}
 		}
 		board.setAlignment(Pos.CENTER);
@@ -65,17 +78,16 @@ public class MasterMindMain extends Application{
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		
+
 		Scene scene = new Scene(createContent());
 		primaryStage.setFullScreen(true);
 		primaryStage.setScene(scene);
 		primaryStage.show();
 	}
-	
-	public static void main(String[] args){
-		
+
+	public static void main(String[] args) {
+
 		launch(args);
 	}
 
-	
 }
