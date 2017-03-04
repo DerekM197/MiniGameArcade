@@ -8,7 +8,6 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.MasterMindMainGUIController">
    <top>
-<<<<<<< HEAD
       <ChoiceBox fx:id="ColorPiecePicker" prefWidth="150.0" BorderPane.alignment="TOP_LEFT">
          <padding>
             <Insets left="10.0" />
@@ -17,9 +16,6 @@
             <Insets left="10.0" top="30.0" />
          </BorderPane.margin>
       </ChoiceBox>
-=======
-      <ChoiceBox fx:id="ColorPiecePicker" prefWidth="150.0" BorderPane.alignment="CENTER" />
->>>>>>> origin/master
    </top>
    <opaqueInsets>
       <Insets />
