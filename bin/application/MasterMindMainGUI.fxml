@@ -7,28 +7,15 @@
 <?import javafx.scene.text.Font?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.MasterMindMainGUIController">
-<<<<<<< HEAD
-   <top>
-=======
    <left>
->>>>>>> origin/master
       <ChoiceBox fx:id="ColorPiecePicker" prefWidth="150.0" BorderPane.alignment="TOP_LEFT">
          <BorderPane.margin>
             <Insets top="20.0" />
          </BorderPane.margin>
       </ChoiceBox>
-<<<<<<< HEAD
-   </top>
-   <opaqueInsets>
-      <Insets />
-   </opaqueInsets>
-   <left>
-      <Label text="Pick Piece" BorderPane.alignment="TOP_LEFT">
-=======
    </left>
    <top>
       <Label text="Mastermind" BorderPane.alignment="CENTER">
->>>>>>> origin/master
          <BorderPane.margin>
             <Insets top="10.0" />
          </BorderPane.margin>

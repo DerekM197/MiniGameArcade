@@ -5,27 +5,26 @@ import java.io.IOException;
 import enums.Colors;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Paint;
+import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
 public class MasterMindMain extends Application {
 
-	private int colSize = 4;
-	private int rowSize = 10;
+	private int colSize;
+	private int rowSize;
 	private int answerSize;
 
-	// public MasterMindMain(int colSize, int rowSize){
-	// setColSize(colSize);
-	// setRowSize(rowSize);
-	// setAnswerSize(colSize);
-	// }
+	public MasterMindMain(int colSize, int rowSize) {
+		setColSize(colSize);
+		setRowSize(rowSize);
+		setAnswerSize(colSize);
+	}
 
 	public int getColSize() {
 		return colSize;
@@ -56,22 +55,32 @@ public class MasterMindMain extends Application {
 		GridPane board = new GridPane();
 		GridPane rightOrWrong = new GridPane();
 		board.gridLinesVisibleProperty().set(true);
+
 		for (int row = 0; row < rowSize; row++) {
 			for (int col = 0; col < colSize; col++) {
-				TextField cell = new TextField();
-				cell.setPrefWidth(30);
-				cell.setPrefHeight(30);
+				Rectangle cell = new Rectangle();
+				cell.setHeight(30);
+				cell.setWidth(30);
+				cell.fillProperty().set(Paint.valueOf(Colors.WHITE.toString()));
+				cell.setStroke(Paint.valueOf(Colors.BLACK.toString()));
 				board.add(cell, col, row);
-				Label lab = new Label();
-				lab.setStyle(value);
 			}
+
 		}
-		for(int row = 0; row < rowSize; row++){
-			for(int col = 0; col < 2; col++){
-				
+		for (int row = 0; row < rowSize; row++) {
+			for (int col = 0; col < 2; col++) {
+				Rectangle cell = new Rectangle();
+				cell.setHeight(30);
+				cell.setWidth(30);
+				cell.fillProperty().set(Paint.valueOf(Colors.WHITE.toString()));
+				cell.setStroke(Paint.valueOf(Colors.BLACK.toString()));
+				rightOrWrong.add(cell, col, row);
 			}
 		}
 		board.setAlignment(Pos.CENTER);
+		rightOrWrong.setAlignment(Pos.CENTER_LEFT);
+		screen.setRight(rightOrWrong);
+		BorderPane.setMargin(rightOrWrong, new Insets(0, 100, 0, 0));
 		screen.setCenter(board);
 		return screen;
 	}
@@ -79,8 +88,8 @@ public class MasterMindMain extends Application {
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 
-		Scene scene = new Scene(createContent());
-		primaryStage.setFullScreen(true);
+		Scene scene = new Scene(createContent(), 600, 600);
+		primaryStage.setTitle("Mastermind");
 		primaryStage.setScene(scene);
 		primaryStage.show();
 	}
