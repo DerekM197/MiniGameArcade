@@ -95,9 +95,9 @@ public class MasterMindMainGUIController implements Initializable {
 		return choice;	
 	}
 	
-	public Colors getColor(){
-		Colors color = ColorPiecePicker.getValue();
-		System.out.println(color.toString());
-		return color;
-	}
+//	public Colors getColor(){
+//		Colors color = ColorPiecePicker.getValue();
+//		System.out.println(color.toString());
+//		return color;
+//	}
 }

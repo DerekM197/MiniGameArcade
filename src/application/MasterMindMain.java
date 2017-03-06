@@ -78,8 +78,7 @@ public class MasterMindMain extends Application {
 				cell.setWidth(30);
 				cell.fillProperty().set(Paint.valueOf("WHITE"));
 				cell.setStroke(Paint.valueOf("BLACK"));
-				MasterMindMainGUIController controller = new MasterMindMainGUIController();
-				cell.setOnMouseClicked(e -> piece.onClick(cell, controller.getColor()));
+				cell.setOnMouseClicked(e -> piece.onClick(cell, box.getValue()));
 				board.add(cell, col, row);
 			}
 
