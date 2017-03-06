@@ -1,7 +1,6 @@
 package application;
 
 import java.net.URL;
-import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 import enums.Colors;
@@ -28,7 +27,6 @@ public class MasterMindMainGUIController implements Initializable {
 
 	private int[] checkCurrentRow(MastermindPiece[] guess,MastermindPiece[] answer)
 	{
-		
 		MastermindPiece[] localGuess = guess.clone();
 		int wrongSpot = 0;
 		int rightSpot = 0;
@@ -42,22 +40,26 @@ public class MasterMindMainGUIController implements Initializable {
 		}
 		
 		for(int i = 0;i<localGuess.length;++i)
-		{
-			
+		{			
 			for(int j = 0;j<answer.length;++j)
 			{
-				
+				if(localGuess != null && localGuess[i].getColor().equals(answer[j].getColor()))
+				{
+					++wrongSpot;
+					j=answer.length;
+				}
 			}
 		}
 		
-		
 		int[] result = {rightSpot,wrongSpot};
-		
 		return result;
 	}
 	
 	private MastermindPiece[] generateAnswer()
 	{
+		 int answerSize = MasterMindMain.getInt();
+		 
+		 
 		return null;
 	}
 }

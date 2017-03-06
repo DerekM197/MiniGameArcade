@@ -25,6 +25,11 @@ public class MasterMindMain extends Application {
 		setRowSize(rowSize);
 		setAnswerSize(colSize);
 	}
+	
+	public static int getInt()
+	{
+		return answerSize;
+	}
 
 	public int getColSize() {
 		return colSize;
