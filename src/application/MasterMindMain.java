@@ -4,10 +4,13 @@ import java.io.IOException;
 
 import enums.Colors;
 import javafx.application.Application;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Paint;
@@ -21,6 +24,7 @@ public class MasterMindMain extends Application {
 	private int colSize;
 	private int rowSize;
 	private static int answerSize;
+	ObservableList<Colors> colors = FXCollections.observableArrayList(Colors.values());
 	
 	public MasterMindMain(int colSize, int rowSize) {
 		setColSize(colSize);
@@ -61,6 +65,8 @@ public class MasterMindMain extends Application {
 		BorderPane screen = FXMLLoader.load(getClass().getResource("MasterMindMainGUI.fxml"));
 		GridPane board = new GridPane();
 		GridPane rightOrWrong = new GridPane();
+		ChoiceBox<Colors> box = new ChoiceBox<Colors>(colors);
+		screen.setLeft(box);
 		board.gridLinesVisibleProperty().set(true);
 		MastermindBoard mastermindBoard = new MastermindBoard(rowSize, colSize);
 		for (int row = 0; row < rowSize; row++) {
@@ -96,6 +102,10 @@ public class MasterMindMain extends Application {
 		return screen;
 	}
 
+	
+	
+	
+	
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 
