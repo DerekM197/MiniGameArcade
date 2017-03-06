@@ -30,4 +30,8 @@ public class MastermindPiece {
 			this.color = color;
 		}
 	}
+	
+	public void onClick(Colors color){
+		setColor(color);
+	}
 }
