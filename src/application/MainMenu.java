@@ -67,7 +67,12 @@ public class MainMenu extends Application{
 		playMastermind.setFont(Font.font("Berlin Sans FB", 12));
 		playMastermind.setEffect(drop);
 		playMastermind.setOnAction(e -> {
-			
+			MasterMindMenu masterMindMenu = new MasterMindMenu();
+			try {
+				masterMindMenu.start(window);
+			}catch(Exception e1){
+				
+			}
 		});
 		Button exitButton = new Button("Exit");
 		exitButton.setPrefWidth(200);
