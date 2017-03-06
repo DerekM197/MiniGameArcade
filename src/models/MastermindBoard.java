@@ -16,5 +16,7 @@ public class MastermindBoard {
 		this.board = board;
 	}
 	
-	
+	public void addPiece(MastermindPiece piece, int row, int col){
+		board[row][col] = piece;
+	}
 }

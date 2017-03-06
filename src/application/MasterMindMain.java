@@ -13,6 +13,8 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
+import models.MastermindBoard;
+import models.MastermindPiece;
 
 public class MasterMindMain extends Application {
 
@@ -60,14 +62,18 @@ public class MasterMindMain extends Application {
 		GridPane board = new GridPane();
 		GridPane rightOrWrong = new GridPane();
 		board.gridLinesVisibleProperty().set(true);
-
+		MastermindBoard mastermindBoard = new MastermindBoard(rowSize, colSize);
 		for (int row = 0; row < rowSize; row++) {
 			for (int col = 0; col < colSize; col++) {
 				Rectangle cell = new Rectangle();
+				MastermindPiece piece = new MastermindPiece();
+				mastermindBoard.addPiece(piece, row, col);
 				cell.setHeight(30);
 				cell.setWidth(30);
 				cell.fillProperty().set(Paint.valueOf("WHITE"));
 				cell.setStroke(Paint.valueOf("BLACK"));
+				MasterMindMainGUIController controller = new MasterMindMainGUIController();
+				cell.setOnMouseClicked(e -> piece.onClick(cell, controller.getColor()));
 				board.add(cell, col, row);
 			}
 

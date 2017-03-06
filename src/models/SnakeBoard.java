@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import interfaces.Subscribable;
 import javafx.scene.Group;
 import javafx.scene.control.Label;
+import javafx.scene.paint.Paint;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 
@@ -21,6 +22,13 @@ public class SnakeBoard implements Subscribable<ArrayList<Rectangle>>{
 	public SnakeBoard(Snake snake){
 		this.snake = snake;
 		food = new Pellet(snake);
+		for(int i = 10; i < 490; i += 10){
+			Line gridLineX = new Line(i, 10, i, 490);
+			gridLineX.strokeProperty().set(Paint.valueOf("753475"));
+			Line gridLineY = new Line(10, i, 490, i);
+			gridLineY.strokeProperty().set(Paint.valueOf("753475"));
+			board.getChildren().addAll(gridLineX, gridLineY);
+		}
 		board.getChildren().addAll(snake.getBody());
 		board.getChildren().addAll(border1, border2, border3, border4, food.placePellet());
 		

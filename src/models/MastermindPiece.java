@@ -1,6 +1,8 @@
 package models;
 
 import enums.Colors;
+import javafx.scene.paint.Paint;
+import javafx.scene.shape.Rectangle;
 
 public class MastermindPiece {
 
@@ -31,7 +33,8 @@ public class MastermindPiece {
 		}
 	}
 	
-	public void onClick(Colors color){
+	public void onClick(Rectangle cell, Colors color){
 		setColor(color);
+		cell.fillProperty().set(Paint.valueOf(color.toString()));
 	}
 }
