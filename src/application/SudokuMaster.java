@@ -87,7 +87,6 @@ public class SudokuMaster {
 			++time;
 			timer.setText("Time: "+time);
 			score.setText("Score: "+(time*multi));
-			System.out.println(time);
 		}
 	};
 		
@@ -97,15 +96,15 @@ public class SudokuMaster {
 		switch(score2.size()){	
 			case(3) :{
 				String lowScore = score2.get(score2.size()-3).toString();
-				LowScore3.setText(lowScore);
+				LowScore3.setText(lowScore.substring(0,lowScore.length()-1));
 			}
 			case(2): {
 				String lowScore = score2.get(score2.size()-2).toString();
-				LowScore2.setText(lowScore);
+				LowScore2.setText(lowScore.substring(0,lowScore.length()-1));
 			}
 			case(1): {
 				String lowScore = score2.get(score2.size()-1).toString();
-				LowScore1.setText(lowScore);
+				LowScore1.setText(lowScore.substring(0,lowScore.length()-1));
 				break;
 			}
 			case(0): {
@@ -113,11 +112,11 @@ public class SudokuMaster {
 			}
 			default:{
 				String lowScore = score2.get(score2.size()-1).toString();
-				LowScore1.setText(lowScore);
+				LowScore1.setText(lowScore.substring(0,lowScore.length()-1));
 					lowScore = score2.get(score2.size()-2).toString();
-				LowScore2.setText(lowScore);
+				LowScore2.setText(lowScore.substring(0,lowScore.length()-1));
 					lowScore = score2.get(score2.size()-3).toString();
-				LowScore3.setText(lowScore);
+				LowScore3.setText(lowScore.substring(0,lowScore.length()-1));
 			}
 		}	
 	}
