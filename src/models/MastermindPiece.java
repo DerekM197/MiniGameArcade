@@ -5,6 +5,7 @@ import enums.Colors;
 public class MastermindPiece {
 
 	private Colors color;
+	private boolean isEditable = false;;
 	
 	public MastermindPiece() {
 		
@@ -14,7 +15,19 @@ public class MastermindPiece {
 		return color;
 	}
 	
+	public boolean isEditable()
+	{
+		return isEditable;
+	}
+
+	public void flipEditable()
+	{
+		isEditable = !isEditable;
+	}
+	
 	public void setColor(Colors color){
-		this.color = color;
+		if(isEditable){
+			this.color = color;
+		}
 	}
 }

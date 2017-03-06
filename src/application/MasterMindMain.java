@@ -18,8 +18,8 @@ public class MasterMindMain extends Application {
 
 	private int colSize;
 	private int rowSize;
-	private int answerSize;
-
+	private static int answerSize;
+	
 	public MasterMindMain(int colSize, int rowSize) {
 		setColSize(colSize);
 		setRowSize(rowSize);
@@ -61,8 +61,8 @@ public class MasterMindMain extends Application {
 				Rectangle cell = new Rectangle();
 				cell.setHeight(30);
 				cell.setWidth(30);
-				cell.fillProperty().set(Paint.valueOf(Colors.WHITE.toString()));
-				cell.setStroke(Paint.valueOf(Colors.BLACK.toString()));
+				cell.fillProperty().set(Paint.valueOf("WHITE"));
+				cell.setStroke(Paint.valueOf("BLACK"));
 				board.add(cell, col, row);
 			}
 
@@ -72,8 +72,8 @@ public class MasterMindMain extends Application {
 				Rectangle cell = new Rectangle();
 				cell.setHeight(30);
 				cell.setWidth(30);
-				cell.fillProperty().set(Paint.valueOf(Colors.WHITE.toString()));
-				cell.setStroke(Paint.valueOf(Colors.BLACK.toString()));
+				cell.fillProperty().set(Paint.valueOf("WHITE"));
+				cell.setStroke(Paint.valueOf("BLACK"));
 				rightOrWrong.add(cell, col, row);
 			}
 		}

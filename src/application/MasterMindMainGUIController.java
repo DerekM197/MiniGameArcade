@@ -1,6 +1,7 @@
 package application;
 
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 import enums.Colors;
@@ -9,10 +10,13 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ChoiceBox;
+import models.MastermindPiece;
 
 public class MasterMindMainGUIController implements Initializable {
 	ObservableList<Colors> colors = FXCollections.observableArrayList(Colors.values());
-
+	
+	
+	
 	@FXML
 	private ChoiceBox<Colors> ColorPiecePicker;
 
@@ -22,4 +26,38 @@ public class MasterMindMainGUIController implements Initializable {
 		ColorPiecePicker.setItems(colors);
 	}
 
+	private int[] checkCurrentRow(MastermindPiece[] guess,MastermindPiece[] answer)
+	{
+		
+		MastermindPiece[] localGuess = guess.clone();
+		int wrongSpot = 0;
+		int rightSpot = 0;
+		for(int i = 0;i<guess.length;++i)
+		{
+			if(guess[i].getColor().equals(answer[i].getColor()))
+			{
+				localGuess[i] = null;
+				++rightSpot;
+			}
+		}
+		
+		for(int i = 0;i<localGuess.length;++i)
+		{
+			
+			for(int j = 0;j<answer.length;++j)
+			{
+				
+			}
+		}
+		
+		
+		int[] result = {rightSpot,wrongSpot};
+		
+		return result;
+	}
+	
+	private MastermindPiece[] generateAnswer()
+	{
+		return null;
+	}
 }
