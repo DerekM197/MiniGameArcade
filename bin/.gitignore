@@ -1,16 +1,26 @@
 /MINIGAME ARCADE.png
 /Snek.png
 /Tile.png
-/application/
-<<<<<<< HEAD
-/models/
-/enums/
-=======
 /blank.png
-/enums/
 /exposed.png
 /flag.png
 /hitmine.png
-/interfaces/
 /mine.png
->>>>>>> origin/master
+/xmls/
+/number1.png
+/number2.png
+/number3.png
+/number4.png
+/number5.png
+/application/
+/enums/
+/interfaces/
+/models/
+/number6.png
+/number7.png
+/number8.png
+/resources/
+/smile.png
+/smilesun.png
+/title-textonly.png
+/wrongmine.png
