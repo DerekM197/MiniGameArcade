@@ -87,7 +87,6 @@ public class SudokuMaster {
 			++time;
 			timer.setText("Time: "+time);
 			score.setText("Score: "+(time*multi));
-			System.out.println(time);
 		}
 	};
 		
