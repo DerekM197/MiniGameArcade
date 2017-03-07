@@ -1,10 +1,16 @@
 package models;
 
+import java.util.Random;
+
+import application.MasterMindMain;
+import enums.Colors;
+
 public class MastermindBoard {
 
 	private MastermindPiece[][] board;
 	private boolean isClickable;
 	private int currentRow = 0;
+	private MastermindPiece[] answer = generateAnswer();
 	
 	public MastermindBoard(int rowSize, int colSize){
 		board = new MastermindPiece[rowSize][colSize];
@@ -43,5 +49,77 @@ public class MastermindBoard {
 	
 	public void addPiece(MastermindPiece piece, int row, int col){
 		board[row][col] = piece;
+	}
+	
+	
+
+	private int[] checkCurrentRow(MastermindPiece[] guess)
+	
+	{
+		MastermindPiece[] localGuess = guess.clone();
+		int wrongSpot = 0;
+		int rightSpot = 0;
+		for(int i = 0;i<guess.length;++i){
+			if(guess[i].getColor().equals(answer[i].getColor())){
+				localGuess[i] = null;
+				++rightSpot;
+			}
+		}
+		
+		for(int i = 0;i<localGuess.length;++i){			
+			for(int j = 0;j<answer.length;++j){
+				if(localGuess != null && localGuess[i].getColor().equals(answer[j].getColor())){
+					++wrongSpot;
+					j=answer.length;
+				}
+			}
+		}
+		
+		int[] result = {rightSpot,wrongSpot};
+		return result;
+	}
+	
+	private MastermindPiece[] generateAnswer(){
+		 int answerSize = MasterMindMain.getInt();
+		 
+		 MastermindPiece[] answer = new MastermindPiece[answerSize];
+				 
+		 for(int i = 0;i<answer.length;++i){
+			 answer[i].flipEditable();
+			 answer[i].setColor(getRandomColor());
+			 answer[i].flipEditable();
+		 }
+		return answer;
+	}
+	
+	private Colors getRandomColor(){
+		Random randy = new Random();
+		
+		int pick = randy.nextInt(4);
+		Colors choice;
+		switch(pick){
+			case(0):{
+				choice = Colors.BLUE;
+				break;
+			}
+			
+			case(1):{
+				choice = Colors.GREEN;
+				break;
+			}
+			
+			case(2):{
+				choice = Colors.RED;
+				break;
+			}
+			case(3):{
+				choice = Colors.YELLOW;
+				break;
+			}
+			default:{
+				choice = Colors.BLUE;
+			}
+		}
+		return choice;	
 	}
 }
