@@ -14,7 +14,7 @@ import models.MastermindPiece;
 
 public class MasterMindMainGUIController implements Initializable {
 	ObservableList<Colors> colors = FXCollections.observableArrayList(Colors.values());
-	
+	private MastermindPiece[] answer = generateAnswer();
 	
 	
 	@FXML
@@ -22,13 +22,13 @@ public class MasterMindMainGUIController implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		ColorPiecePicker.setValue(colors.get(0));
-		ColorPiecePicker.setItems(colors);
+		
 	}
 
-	private int[] checkCurrentRow(MastermindPiece[] guess,MastermindPiece[] answer)
+	private int[] checkCurrentRow(MastermindPiece[] guess)
+	
 	{
-		MastermindPiece[] localGuess = guess.clone();
+		MastermindPiece[] localGuess = guess;
 		int wrongSpot = 0;
 		int rightSpot = 0;
 		for(int i = 0;i<guess.length;++i){
