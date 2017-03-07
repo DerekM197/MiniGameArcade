@@ -66,6 +66,7 @@ public class MasterMindMain extends Application {
 		GridPane board = new GridPane();
 		GridPane rightOrWrong = new GridPane();
 		ChoiceBox<Colors> box = new ChoiceBox<Colors>(colors);
+		box.setValue(Colors.BLUE);
 		screen.setLeft(box);
 		board.gridLinesVisibleProperty().set(true);
 		MastermindBoard mastermindBoard = new MastermindBoard(rowSize, colSize);
