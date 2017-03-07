@@ -78,6 +78,7 @@ public class MasterMindMain extends Application {
 			}
 
 		}
+		mastermindBoard.changeFirstRow();
 		for (int row = 0; row < rowSize; row++) {
 			for (int col = 0; col < 2; col++) {
 				Rectangle cell = new Rectangle();
