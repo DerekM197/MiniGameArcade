@@ -7,7 +7,7 @@ import javafx.scene.shape.Rectangle;
 public class MastermindPiece {
 
 	private Colors color;
-	private boolean isEditable = false;;
+	private boolean isEditable = false;
 	
 	public MastermindPiece() {
 		
@@ -34,7 +34,9 @@ public class MastermindPiece {
 	}
 	
 	public void onClick(Rectangle cell, Colors color){
+		if(isEditable){
 		setColor(color);
 		cell.fillProperty().set(Paint.valueOf(color.toString()));
+		}
 	}
 }
