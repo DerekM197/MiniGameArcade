@@ -28,7 +28,7 @@ public class MasterMindMainGUIController implements Initializable {
 	private int[] checkCurrentRow(MastermindPiece[] guess)
 	
 	{
-		MastermindPiece[] localGuess = guess;
+		MastermindPiece[] localGuess = guess.clone();
 		int wrongSpot = 0;
 		int rightSpot = 0;
 		for(int i = 0;i<guess.length;++i){
