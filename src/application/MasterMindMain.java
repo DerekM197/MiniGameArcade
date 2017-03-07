@@ -62,7 +62,7 @@ public class MasterMindMain extends Application {
 		Button checkGuess = new Button("Check Guess");
 		checkGuess.setOnAction(e -> mastermindBoard.checkCurrentRow());
 		control.getChildren().addAll(box, checkGuess);
-		screen.setLeft(box);
+		screen.setLeft(control);
 		board.gridLinesVisibleProperty().set(true);
 		for (int row = 0; row < rowSize; row++) {
 			for (int col = 0; col < colSize; col++) {

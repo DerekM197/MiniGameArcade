@@ -28,7 +28,7 @@ public class MastermindBoard {
 				board[currentRow+1][j].flipEditable();
 			}
 		}
-		guess = getBoard()[currentRow];
+	
 		++currentRow;
 		
 	}
@@ -58,8 +58,8 @@ public class MastermindBoard {
 	
 
 	public int[] checkCurrentRow()
-	
 	{
+		guess = board[currentRow];
 		MastermindPiece[] localGuess = guess.clone();
 		int wrongSpot = 0;
 		int rightSpot = 0;
@@ -80,6 +80,7 @@ public class MastermindBoard {
 		}
 		
 		int[] result = {rightSpot,wrongSpot};
+		changeWorkingRow();
 		return result;
 	}
 	
