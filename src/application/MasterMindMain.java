@@ -10,9 +10,11 @@ import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
@@ -23,18 +25,15 @@ public class MasterMindMain extends Application {
 
 	private int colSize;
 	private int rowSize;
-	private static int answerSize;
-	ObservableList<Colors> colors = FXCollections.observableArrayList(Colors.values());
+
+	private ObservableList<Colors> colors = FXCollections.observableArrayList(Colors.values());
+	private MastermindBoard mastermindBoard;
 	
 	public MasterMindMain(int colSize, int rowSize) {
 		setColSize(colSize);
 		setRowSize(rowSize);
-		setAnswerSize(colSize);
-	}
-	
-	public static int getInt()
-	{
-		return answerSize;
+		mastermindBoard = new MastermindBoard(rowSize, colSize);
+		mastermindBoard.setAnswerSize(colSize);
 	}
 
 	public int getColSize() {
@@ -53,23 +52,18 @@ public class MasterMindMain extends Application {
 		this.rowSize = rowSize;
 	}
 
-	public int getAnswerSize() {
-		return answerSize;
-	}
-
-	public void setAnswerSize(int answerSize) {
-		this.answerSize = answerSize;
-	}
-
 	public BorderPane createContent() throws IOException {
 		BorderPane screen = FXMLLoader.load(getClass().getResource("MasterMindMainGUI.fxml"));
 		GridPane board = new GridPane();
 		GridPane rightOrWrong = new GridPane();
+		VBox control = new VBox();
 		ChoiceBox<Colors> box = new ChoiceBox<Colors>(colors);
 		box.setValue(Colors.BLUE);
+		Button checkGuess = new Button("Check Guess");
+		checkGuess.setOnAction(e -> mastermindBoard.checkCurrentRow());
+		control.getChildren().addAll(box, checkGuess);
 		screen.setLeft(box);
 		board.gridLinesVisibleProperty().set(true);
-		MastermindBoard mastermindBoard = new MastermindBoard(rowSize, colSize);
 		for (int row = 0; row < rowSize; row++) {
 			for (int col = 0; col < colSize; col++) {
 				Rectangle cell = new Rectangle();

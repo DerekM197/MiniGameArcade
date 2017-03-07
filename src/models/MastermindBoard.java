@@ -11,6 +11,8 @@ public class MastermindBoard {
 	private boolean isClickable;
 	private int currentRow = 0;
 	private MastermindPiece[] answer = generateAnswer();
+	private MastermindPiece[] guess;
+	private int answerSize;
 	
 	public MastermindBoard(int rowSize, int colSize){
 		board = new MastermindPiece[rowSize][colSize];
@@ -26,7 +28,9 @@ public class MastermindBoard {
 				board[currentRow+1][j].flipEditable();
 			}
 		}
+		guess = getBoard()[currentRow];
 		++currentRow;
+		
 	}
 	
 	public MastermindPiece[][] getBoard(){
@@ -53,7 +57,7 @@ public class MastermindBoard {
 	
 	
 
-	private int[] checkCurrentRow(MastermindPiece[] guess)
+	public int[] checkCurrentRow()
 	
 	{
 		MastermindPiece[] localGuess = guess.clone();
@@ -79,8 +83,17 @@ public class MastermindBoard {
 		return result;
 	}
 	
-	private MastermindPiece[] generateAnswer(){
-		 int answerSize = MasterMindMain.getInt();
+
+	public int getAnswerSize() {
+		return answerSize;
+	}
+
+	public void setAnswerSize(int answerSize) {
+		this.answerSize = answerSize;
+	}
+	public MastermindPiece[] generateAnswer(){
+		 int answerSize = getAnswerSize();
+		 
 		 
 		 MastermindPiece[] answer = new MastermindPiece[answerSize];
 				 
@@ -92,7 +105,7 @@ public class MastermindBoard {
 		return answer;
 	}
 	
-	private Colors getRandomColor(){
+	public Colors getRandomColor(){
 		Random randy = new Random();
 		
 		int pick = randy.nextInt(4);
