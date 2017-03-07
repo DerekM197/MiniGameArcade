@@ -295,8 +295,7 @@ public class SudokuMaster {
 	
 	public void checkBoard()
 	{
-		Complete.setText(checkFullBoard()? "You Win!!" : "Not Complete");	
-		Complete.setText("You Win!!");
+		Complete.setText(checkFullBoard()? "You Win!!" : "Not Complete");
 		if(Complete.getText().equals("You Win!!"));
 		{
 			haveWon = true;
