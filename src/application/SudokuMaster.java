@@ -274,6 +274,7 @@ public class SudokuMaster {
 	{	
 		time = 0;
 		haveWon = false;
+		Complete.setText("Not Complete");
 		clearBoard();
 		ArrayList<Integer> numbs = new ArrayList<>(10);
 		for(int i = 1;i<10;++i)
@@ -296,7 +297,7 @@ public class SudokuMaster {
 	public void checkBoard()
 	{
 		Complete.setText(checkFullBoard()? "You Win!!" : "Not Complete");
-		if(Complete.getText().equals("You Win!!"));
+		if(Complete.getText().equals("You Win!!"))
 		{
 			haveWon = true;
 			user.editableProperty().set(true);
