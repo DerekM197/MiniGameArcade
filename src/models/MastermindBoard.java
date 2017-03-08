@@ -74,30 +74,33 @@ public class MastermindBoard {
 	
 	
 
-	public int[] checkCurrentRow()
-	{
+	public int[] checkCurrentRow(){
 		guess = board[currentRow];
 		MastermindPiece[] localGuess = guess.clone();
+		MastermindPiece[] localAnswer = answer.clone();
 		int wrongSpot = 0;
 		int rightSpot = 0;
+		
 		for(int i = 0;i<guess.length;++i){
 			if(guess[i].getColor().equals(answer[i].getColor())){
 				localGuess[i] = null;
+				localAnswer[i] = null;
 				++rightSpot;
 			}
 		}
-		
-		for(int i = 0;i<localGuess.length;++i){			
-			for(int j = 0;j<answer.length;++j){
-				if(localGuess[i] != null && localGuess[i].getColor().equals(answer[j].getColor())){
+		for(int i = 0;i<localGuess.length;++i){		
+			for(int j = 0;j<localAnswer.length;++j){
+				
+				if(localGuess[i] != null && localAnswer[j]!=null&&localGuess[i].getColor().equals(localAnswer[j].getColor())){
 					++wrongSpot;
-					j=answer.length;
+					j=localAnswer.length;
 				}
 			}
 		}
 		
 		int[] result = {rightSpot,wrongSpot};
 		changeWorkingRow();
+		System.out.println(result[0]+" : "+result[1]);
 		return result;
 	}
 	
@@ -116,10 +119,13 @@ public class MastermindBoard {
 		 for(int i = 0;i<LocalAnswer.length;++i){
 			 LocalAnswer[i] = new MastermindPiece();
 			 LocalAnswer[i].flipEditable();
-			 LocalAnswer[i].setColor(getRandomColor());
-			// System.out.println(LocalAnswer[i]);
+			 Colors color = getRandomColor();
+			 LocalAnswer[i].setColor(color);
+			 System.out.print(" | "+color.toString());
+		
 			 LocalAnswer[i].flipEditable();
 		 }
+		 System.out.println();
 		return LocalAnswer;
 	}
 	
