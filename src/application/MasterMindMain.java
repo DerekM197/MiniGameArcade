@@ -12,11 +12,14 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import models.MastermindBoard;
 import models.MastermindPiece;
@@ -25,9 +28,10 @@ public class MasterMindMain extends Application {
 
 	private int colSize;
 	private int rowSize;
-	private Stage stage;
+	private static Stage stage;
 	private ObservableList<Colors> colors = FXCollections.observableArrayList(Colors.values());
-	private MastermindBoard mastermindBoard;
+	private static MastermindBoard mastermindBoard;
+	private static BorderPane screen;
 	
 	public MasterMindMain(int colSize, int rowSize) {
 		setColSize(colSize);
@@ -53,7 +57,7 @@ public class MasterMindMain extends Application {
 	}
 
 	public BorderPane createContent() throws IOException {
-		BorderPane screen = FXMLLoader.load(getClass().getResource("MasterMindMainGUI.fxml"));
+		screen = FXMLLoader.load(getClass().getResource("MasterMindMainGUI.fxml"));
 		GridPane board = new GridPane();
 		GridPane rightOrWrong = new GridPane();
 		VBox control = new VBox();
@@ -70,7 +74,14 @@ public class MasterMindMain extends Application {
 				e1.printStackTrace();
 			}
 			});
-		checkGuess.setOnAction(e -> mastermindBoard.checkCurrentRow());
+		checkGuess.setOnAction(e -> {
+			int numberRight = mastermindBoard.checkCurrentRow()[0];
+			if(didWin(numberRight)){
+				displayWin();
+			}else if(mastermindBoard.getCurrentRow() == 10 && !didWin(numberRight)){
+				displayLoss();
+			}
+		});
 		control.getChildren().addAll(box, checkGuess, backToMain);
 		screen.setLeft(control);
 		board.gridLinesVisibleProperty().set(true);
@@ -125,4 +136,85 @@ public class MasterMindMain extends Application {
 		launch(args);
 	}
 
+	public static boolean didWin(int numberRight){
+		if(numberRight == mastermindBoard.getAnswerSize()){
+			return true;
+		}else{
+			return false;
+		}
+	}
+	
+	public static void displayWin(){
+		Label win = new Label("You win!");
+		win.setFont(Font.font(24));
+		Button playAgain = new Button("Play Again");
+		DropShadow drop = new DropShadow();
+		playAgain.setPrefWidth(150);
+		playAgain.setPrefHeight(25);
+		playAgain.setFont(Font.font(12));
+		playAgain.setEffect(drop);
+		playAgain.setOnAction(e -> {
+			MasterMindMenu menu = new MasterMindMenu();
+			try {
+				menu.start(stage);
+			} catch (Exception e1) {
+	
+			}
+		});
+		Button mainMenuButton = new Button("Go to Main Menu");
+		mainMenuButton.setPrefWidth(150);
+		mainMenuButton.setPrefHeight(25);
+		mainMenuButton.setFont(Font.font(12));
+		mainMenuButton.setEffect(drop);
+		mainMenuButton.setOnAction(e -> {
+			MainMenu menu = new MainMenu();
+			try {
+				menu.start(stage);
+			} catch (Exception e1) {
+	
+			}
+		});
+		VBox won = new VBox(20);
+		won.setAlignment(Pos.CENTER);
+		won.getChildren().addAll(win, playAgain, mainMenuButton);
+		screen.setLeft(null);
+		screen.setCenter(won);
+	}
+	
+	public static void displayLoss(){
+		Label lose = new Label("You lose...");
+		lose.setFont(Font.font(24));
+		Button playAgain = new Button("Play Again");
+		DropShadow drop = new DropShadow();
+		playAgain.setPrefWidth(150);
+		playAgain.setPrefHeight(25);
+		playAgain.setFont(Font.font(12));
+		playAgain.setEffect(drop);
+		playAgain.setOnAction(e -> {
+			MasterMindMenu menu = new MasterMindMenu();
+			try {
+				menu.start(stage);
+			} catch (Exception e1) {
+	
+			}
+		});
+		Button mainMenuButton = new Button("Go to Main Menu");
+		mainMenuButton.setPrefWidth(150);
+		mainMenuButton.setPrefHeight(25);
+		mainMenuButton.setFont(Font.font(12));
+		mainMenuButton.setEffect(drop);
+		mainMenuButton.setOnAction(e -> {
+			MainMenu menu = new MainMenu();
+			try {
+				menu.start(stage);
+			} catch (Exception e1) {
+	
+			}
+		});
+		VBox won = new VBox(20);
+		won.setAlignment(Pos.CENTER);
+		won.getChildren().addAll(lose, playAgain, mainMenuButton);
+		screen.setLeft(null);
+		screen.setCenter(won);
+	}
 }

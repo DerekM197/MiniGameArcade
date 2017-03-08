@@ -174,4 +174,8 @@ public class MastermindBoard {
 		}
 		return choice;	
 	}
+	
+	public int getCurrentRow(){
+		return currentRow;
+	}
 }
