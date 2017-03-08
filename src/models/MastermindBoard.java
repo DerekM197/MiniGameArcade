@@ -26,7 +26,6 @@ public class MastermindBoard {
 			if(currentRow<10)
 			{
 				board[0][j].flipEditable();
-				System.out.println(board[0][j]);
 			}
 		}
 	}
@@ -72,10 +71,21 @@ public class MastermindBoard {
 		board[row][col] = piece;
 	}
 	
-	
+	private boolean isWhiteSpace(MastermindPiece[] guess){
+		for(int i = 0;i<guess.length;++i){
+			if(guess[i] != null && guess[i].getColor().toString().equals("WHITE")){
+				return true;
+			}
+		}
+		return false;
+	}
 
 	public int[] checkCurrentRow(){
 		guess = board[currentRow];
+		if(isWhiteSpace(guess))
+		{
+			return new int[]{0,0};
+		}
 		MastermindPiece[] localGuess = guess.clone();
 		MastermindPiece[] localAnswer = answer.clone();
 		int wrongSpot = 0;
@@ -92,6 +102,7 @@ public class MastermindBoard {
 			for(int j = 0;j<localAnswer.length;++j){
 				
 				if(localGuess[i] != null && localAnswer[j]!=null&&localGuess[i].getColor().equals(localAnswer[j].getColor())){
+					localAnswer[j] = null;
 					++wrongSpot;
 					j=localAnswer.length;
 				}
@@ -132,29 +143,33 @@ public class MastermindBoard {
 	public Colors getRandomColor(){
 		Random randy = new Random();
 		
-		int pick = randy.nextInt(4);
+		int pick = randy.nextInt(7);
 		Colors choice;
 		switch(pick){
 			case(0):{
 				choice = Colors.BLUE;
 				break;
-			}
-			
-			case(1):{
+			}case(1):{
 				choice = Colors.GREEN;
 				break;
-			}
-			
-			case(2):{
+			}case(2):{
 				choice = Colors.RED;
 				break;
-			}
-			case(3):{
+			}case(3):{
 				choice = Colors.YELLOW;
+				break;
+			}case(4):{
+				choice = Colors.BROWN;
+				break;
+			}case(5):{
+				choice = Colors.PURPLE;
+				break;
+			}case(6):{
+				choice = Colors.ORANGE;
 				break;
 			}
 			default:{
-				choice = Colors.BLUE;
+				choice = Colors.WHITE;
 			}
 		}
 		return choice;	
