@@ -272,6 +272,7 @@ public class SudokuMaster {
 	
 	public void generateSquareBoard()
 	{	
+		multi = 1;
 		time = 0;
 		haveWon = false;
 		Complete.setText("Not Complete");
@@ -296,6 +297,7 @@ public class SudokuMaster {
 	
 	public void checkBoard()
 	{
+		++multi;
 		Complete.setText(checkFullBoard()? "You Win!!" : "Not Complete");
 		if(Complete.getText().equals("You Win!!"))
 		{
