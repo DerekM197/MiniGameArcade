@@ -25,7 +25,7 @@ public class MasterMindMain extends Application {
 
 	private int colSize;
 	private int rowSize;
-
+	private Stage stage;
 	private ObservableList<Colors> colors = FXCollections.observableArrayList(Colors.values());
 	private MastermindBoard mastermindBoard;
 	
@@ -60,8 +60,18 @@ public class MasterMindMain extends Application {
 		ChoiceBox<Colors> box = new ChoiceBox<Colors>(colors);
 		box.setValue(Colors.BLUE);
 		Button checkGuess = new Button("Check Guess");
+		Button backToMain = new Button("Back To Main Menu");
+		backToMain.setOnAction(e -> {
+			MainMenu mainMenu = new MainMenu();
+			try {
+				mainMenu.start(stage);
+			} catch (Exception e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			});
 		checkGuess.setOnAction(e -> mastermindBoard.checkCurrentRow());
-		control.getChildren().addAll(box, checkGuess);
+		control.getChildren().addAll(box, checkGuess, backToMain);
 		screen.setLeft(control);
 		board.gridLinesVisibleProperty().set(true);
 		for (int row = 0; row < rowSize; row++) {
@@ -103,7 +113,7 @@ public class MasterMindMain extends Application {
 	
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-
+		stage = primaryStage;
 		Scene scene = new Scene(createContent(), 600, 600);
 		primaryStage.setTitle("Mastermind");
 		primaryStage.setScene(scene);
