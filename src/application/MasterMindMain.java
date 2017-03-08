@@ -12,7 +12,11 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Paint;
@@ -91,16 +95,16 @@ public class MasterMindMain extends Application {
 		mastermindBoard.changeFirstRow();
 		for (int row = 0; row < rowSize; row++) {
 			for (int col = 0; col < 2; col++) {
-				Rectangle cell = new Rectangle();
-				cell.setHeight(30);
-				cell.setWidth(30);
-				cell.fillProperty().set(Paint.valueOf("WHITE"));
-				cell.setStroke(Paint.valueOf("BLACK"));
+				Label cell = new Label();
+				cell.setPrefHeight(30);
+				cell.setPrefWidth(30);
+				cell.backgroundProperty().set(new Background(new BackgroundFill(Paint.valueOf("white"), CornerRadii.EMPTY, Insets.EMPTY)));
 				rightOrWrong.add(cell, col, row);
 			}
 		}
 		board.setAlignment(Pos.CENTER);
 		rightOrWrong.setAlignment(Pos.CENTER_LEFT);
+		rightOrWrong.gridLinesVisibleProperty().set(true);
 		screen.setRight(rightOrWrong);
 		BorderPane.setMargin(rightOrWrong, new Insets(0, 100, 0, 0));
 		screen.setCenter(board);
