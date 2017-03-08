@@ -6,7 +6,7 @@ import javafx.scene.shape.Rectangle;
 
 public class MastermindPiece {
 
-	private Colors color = Colors.BLUE;
+	private Colors color = Colors.WHITE;
 	private boolean isEditable = false;
 	
 	public MastermindPiece() {
