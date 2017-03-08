@@ -39,7 +39,7 @@ public class MasterMindMenu extends Application{
 		intermediate.setPrefWidth(200);
 		intermediate.setEffect(drop);
 		intermediate.setOnAction(e -> {
-			MasterMindMain minesweeper = new MasterMindMain(4, 16);
+			MasterMindMain minesweeper = new MasterMindMain(4, 10);
 			try {
 				minesweeper.start(primaryStage);
 			} catch (Exception e1) {
@@ -51,7 +51,7 @@ public class MasterMindMenu extends Application{
 		hard.setPrefWidth(200);
 		hard.setEffect(drop);
 		hard.setOnAction(e -> {
-			MasterMindMain minesweeper = new MasterMindMain(6, 16);
+			MasterMindMain minesweeper = new MasterMindMain(6, 10);
 			try {
 				minesweeper.start(primaryStage);
 			} catch (Exception e1) {
