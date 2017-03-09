@@ -23,6 +23,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
+import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import models.MastermindBoard;
 import models.MastermindPiece;
@@ -35,6 +36,7 @@ public class MasterMindMain extends Application {
 	private ObservableList<Colors> colors = FXCollections.observableArrayList(Colors.values());
 	private static MastermindBoard mastermindBoard;
 	private static BorderPane screen;
+	private Label[][] labels  = new Label[10][2];
 	
 	public MasterMindMain(int colSize, int rowSize) {
 		setColSize(colSize);
@@ -106,12 +108,14 @@ public class MasterMindMain extends Application {
 		for (int row = 0; row < rowSize; row++) {
 			for (int col = 0; col < 2; col++) {
 				Label cell = new Label();
+				labels[row][col] = cell;
 				cell.setPrefHeight(30);
 				cell.setPrefWidth(30);
 				cell.backgroundProperty().set(new Background(new BackgroundFill(Paint.valueOf("white"), CornerRadii.EMPTY, Insets.EMPTY)));
 				rightOrWrong.add(cell, col, row);
 			}
 		}
+		mastermindBoard.setLabels(labels);
 		board.setAlignment(Pos.CENTER);
 		rightOrWrong.setAlignment(Pos.CENTER_LEFT);
 		rightOrWrong.gridLinesVisibleProperty().set(true);

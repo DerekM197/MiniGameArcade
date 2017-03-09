@@ -2,8 +2,8 @@ package models;
 
 import java.util.Random;
 
-
 import enums.Colors;
+import javafx.scene.control.Label;
 
 public class MastermindBoard {
 
@@ -12,6 +12,7 @@ public class MastermindBoard {
 	private int currentRow = 0;
 	private MastermindPiece[] answer;
 	private MastermindPiece[] guess;
+	private Label[][] labels = new Label[10][2];
 	private int answerSize;
 	
 	public MastermindBoard(int rowSize, int colSize){
@@ -30,6 +31,15 @@ public class MastermindBoard {
 		}
 	}
 	
+	
+	public Label[][] getLabels() {
+		return labels;
+	}
+
+	public void setLabels(Label[][] labels) {
+		this.labels = labels;
+	}
+
 	public void changeWorkingRow()
 	{
 		
@@ -110,8 +120,12 @@ public class MastermindBoard {
 		}
 		
 		int[] result = {rightSpot,wrongSpot};
+		labels[currentRow][0].setText("   " + result[0]+ "");
+		labels[currentRow][1].setText("   "+result[1] + "");
+		
+				
 		changeWorkingRow();
-		System.out.println(result[0]+" : "+result[1]);
+		
 		return result;
 	}
 	
