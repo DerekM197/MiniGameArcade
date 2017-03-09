@@ -138,7 +138,6 @@ public class MastermindBoard {
 		this.answerSize = answerSize;
 	}
 	public MastermindPiece[] generateAnswer(){
-		
 		 MastermindPiece[] LocalAnswer = new MastermindPiece[answerSize];
 		 
 		 for(int i = 0;i<LocalAnswer.length;++i){
@@ -146,11 +145,8 @@ public class MastermindBoard {
 			 LocalAnswer[i].flipEditable();
 			 Colors color = getRandomColor();
 			 LocalAnswer[i].setColor(color);
-			 System.out.print(" | "+color.toString());
-		
 			 LocalAnswer[i].flipEditable();
 		 }
-		 System.out.println();
 		return LocalAnswer;
 	}
 	
