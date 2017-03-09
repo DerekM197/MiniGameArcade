@@ -50,8 +50,10 @@ public class MinesweeperBoard {
 	public void setNumOfBombs(int numOfBombs) {
 		if(numOfBombs == 256){
 			numOfBombs = 40;
-		}else if(numOfBombs == 18){
-			
+		}else if(numOfBombs == 81){
+			numOfBombs = 10;
+		}else{
+			numOfBombs = 99;
 		}
 		this.numOfBombs = numOfBombs;
 	}
