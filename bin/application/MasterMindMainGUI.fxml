@@ -15,7 +15,7 @@
       </ChoiceBox>
    </left>
    <top>
-      <Label text="Mastermind" textFill="WHITE" BorderPane.alignment="CENTER">
+      <Label contentDisplay="RIGHT" text="Mastermind" textFill="WHITE" BorderPane.alignment="CENTER">
          <BorderPane.margin>
             <Insets top="10.0" />
          </BorderPane.margin>
@@ -24,4 +24,7 @@
          </font>
       </Label>
    </top>
+   <bottom>
+      <Label prefHeight="70.0" prefWidth="300.0" text="The left column is the number of pieces in the right spot with the correct color, and the right column represents pieces in the wrong spot but the right color" textFill="WHITE" textOverrun="CLIP" wrapText="true" BorderPane.alignment="CENTER" />
+   </bottom>
 </BorderPane>

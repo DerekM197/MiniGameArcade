@@ -154,6 +154,7 @@ public class MasterMindMain extends Application {
 	public static void displayWin(){
 		Label win = new Label("You win!");
 		win.setFont(Font.font(24));
+		win.setTextFill(Paint.valueOf("WHITE"));
 		Button playAgain = new Button("Play Again");
 		DropShadow drop = new DropShadow();
 		playAgain.setPrefWidth(150);
@@ -182,8 +183,18 @@ public class MasterMindMain extends Application {
 			}
 		});
 		VBox won = new VBox(20);
+		GridPane answer = new GridPane();
+		for(int i = 0; i < mastermindBoard.getAnswerSize(); i++){
+			Rectangle answerPiece = new Rectangle();
+			answerPiece.setHeight(30);
+			answerPiece.setWidth(30);
+			answerPiece.fillProperty().set(Paint.valueOf(mastermindBoard.getAnswer()[i].getColor().toString()));
+			answerPiece.setStroke(Paint.valueOf("BLACK"));
+			answer.add(answerPiece, i, 0);
+		}
+		answer.setAlignment(Pos.CENTER);
 		won.setAlignment(Pos.CENTER);
-		won.getChildren().addAll(win, playAgain, mainMenuButton);
+		won.getChildren().addAll(win, playAgain, mainMenuButton, answer);
 		screen.setLeft(null);
 		screen.setCenter(won);
 	}
@@ -191,6 +202,7 @@ public class MasterMindMain extends Application {
 	public static void displayLoss(){
 		Label lose = new Label("You lose...");
 		lose.setFont(Font.font(24));
+		lose.setTextFill(Paint.valueOf("WHITE"));
 		Button playAgain = new Button("Play Again");
 		DropShadow drop = new DropShadow();
 		playAgain.setPrefWidth(150);
@@ -219,8 +231,18 @@ public class MasterMindMain extends Application {
 			}
 		});
 		VBox won = new VBox(20);
+		GridPane answer = new GridPane();
+		answer.setAlignment(Pos.CENTER);
+		for(int i = 0; i < mastermindBoard.getAnswerSize(); i++){
+			Rectangle answerPiece = new Rectangle();
+			answerPiece.setHeight(30);
+			answerPiece.setWidth(30);
+			answerPiece.fillProperty().set(Paint.valueOf(mastermindBoard.getAnswer()[i].getColor().toString()));
+			answerPiece.setStroke(Paint.valueOf("BLACK"));
+			answer.add(answerPiece, i, 0);
+		}
 		won.setAlignment(Pos.CENTER);
-		won.getChildren().addAll(lose, playAgain, mainMenuButton);
+		won.getChildren().addAll(lose, playAgain, mainMenuButton, answer);
 		screen.setLeft(null);
 		screen.setCenter(won);
 	}

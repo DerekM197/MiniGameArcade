@@ -63,6 +63,10 @@ public class MastermindBoard {
 		return board;
 	}
 	
+	public MastermindPiece[] getAnswer(){
+		return answer;
+	}
+	
 	public void setBoard(MastermindPiece[][] board){
 		this.board = board;
 	}
