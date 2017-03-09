@@ -112,8 +112,6 @@ public class Cell implements EventListener {
 			}
 
 		}
-		System.out.println(board.getNumOfUnopend());
-		System.out.println(board.getNumOfBombs());
 		if (board.getNumOfUnopend() == board.getNumOfBombs()) {
 			board.win();
 		}
