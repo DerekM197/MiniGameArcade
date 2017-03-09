@@ -67,6 +67,7 @@ public class SudokuMaster {
 	}
 	
 	Thread th = new Thread(){
+		@SuppressWarnings("static-access")
 		public void run(){
 			while(onTimer)
 			{

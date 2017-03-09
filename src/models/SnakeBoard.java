@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import interfaces.Subscribable;
 import javafx.scene.Group;
-import javafx.scene.control.Label;
+
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;

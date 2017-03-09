@@ -2,7 +2,7 @@ package models;
 
 import java.util.Random;
 
-import application.MasterMindMain;
+
 import enums.Colors;
 
 public class MastermindBoard {

@@ -28,6 +28,7 @@ public class SnakeGame extends Application{
 	BorderPane layout;
 	AnimationTimer timer;
 	
+	@SuppressWarnings("incomplete-switch")
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		snake.addNeighbor(board);
@@ -100,6 +101,7 @@ public class SnakeGame extends Application{
 //			}
 		});
 		scene.setOnKeyReleased(e -> {
+			
 			switch(e.getCode()){
 			case W:
 				if(direction == Directions.UP){
