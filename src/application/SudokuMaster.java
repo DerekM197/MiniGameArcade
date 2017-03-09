@@ -51,7 +51,6 @@ public class SudokuMaster {
 		} catch (Exception e1) {
 			e1.printStackTrace();
 		}
-		
 	}
 	
 	public void initialize(){
@@ -259,7 +258,6 @@ public class SudokuMaster {
 			arr[4].editableProperty().set(false);	
 		}
 	}
-	
 	
 	public void checkBoard(){
 		++multi;
