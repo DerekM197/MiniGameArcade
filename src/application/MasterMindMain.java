@@ -13,12 +13,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
-<<<<<<< HEAD
 import javafx.scene.effect.DropShadow;
-=======
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
->>>>>>> origin/master
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.GridPane;
